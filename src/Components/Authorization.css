@@ -1,0 +1,66 @@
+.centered-container {
+  margin: auto;
+  width: 32.4rem;
+  margin-top: 42rem;
+}
+
+.centered-container > * {
+  width: 100%;
+}
+
+.authorization-header {
+  height: 4.4rem;
+}
+
+.authorization-header label {
+  font-size: 16px;
+  line-height: 2.2rem;
+  color: #6b6b6c;
+}
+
+.authorization-body {
+  margin-top: 4.4rem;
+}
+
+.authorization-body > :not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.text-field--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 8.9rem;
+}
+
+.text-field--container input {
+  height: 5.6rem;
+  border: 0.1rem solid #d1d1d9;
+  border-radius: 0.5rem;
+}
+
+.text-field--container label {
+  font-size: 18px;
+  color: #323232;
+}
+
+.authorization-footer {
+  height: 6.1rem;
+  margin-top: 6.4rem;
+}
+
+.authorization-footer button {
+  height: inherit;
+  width: inherit;
+  border-radius: 0.5rem;
+  border: none;
+  background: #484848;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.authorization-footer button:hover {
+  border: 0.1rem solid;
+}
