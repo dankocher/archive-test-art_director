@@ -1,6 +1,6 @@
 import React from "react";
 import "./Authorization.css";
-import labels from "../utils/labelText/lable.json";
+import labels from "../../utils/labelText/lable.json";
 
 function Authorization() {
   return (
@@ -19,7 +19,7 @@ function Authorization() {
         </div>
       </div>
       <div className="authorization-footer">
-        <button>{labels.buttonLabel}</button>
+        <button className="black-button">{labels.buttonLabel}</button>
       </div>
     </div>
   );

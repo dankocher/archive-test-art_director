@@ -2,5 +2,6 @@
   "headerLable": "Перед началом теста введите свои данные",
   "nameLabel": "Фамилия и имя",
   "mailLabel": "Почта",
-  "buttonLabel": "Начать тест"
+  "buttonLabelStart": "Начать тест",
+  "buttonLabelNext": "Далее"
 }

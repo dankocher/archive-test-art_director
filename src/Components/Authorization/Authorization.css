@@ -46,23 +46,5 @@
 }
 
 .authorization-footer {
-  height: 6.1rem;
   margin-top: 6.4rem;
-}
-
-.authorization-footer button {
-  height: inherit;
-  width: inherit;
-  border-radius: 0.5rem;
-  border: 0.1rem solid #ffffff;
-  background: #484848;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.authorization-footer button:hover {
-  border: 0.1rem solid #323232;
-  background-color: #323232;
 }
