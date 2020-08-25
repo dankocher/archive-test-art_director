@@ -1,32 +1,28 @@
-.centered-container {
+.centered-container--authorization {
   margin: auto;
   width: 32.4rem;
   margin-top: 42rem;
 }
 
-.centered-container > * {
-  width: 100%;
-}
-
-.authorization-header {
+.header--authorization {
   height: 4.4rem;
 }
 
-.authorization-header label {
+.header--authorization label {
   font-size: 16px;
   line-height: 2.2rem;
   color: #6b6b6c;
 }
 
-.authorization-body {
+.body--authorization {
   margin-top: 4.4rem;
 }
 
-.authorization-body > :not(:last-child) {
+.body--authorization > :not(:last-child) {
   margin-bottom: 2rem;
 }
 
-.text-field--container {
+.field--authorization {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,17 +30,17 @@
   height: 8.9rem;
 }
 
-.text-field--container input {
+.field--authorization input {
   height: 5.6rem;
   border: 0.1rem solid #d1d1d9;
   border-radius: 0.5rem;
 }
 
-.text-field--container label {
+.field--authorization label {
   font-size: 18px;
   color: #323232;
 }
 
-.authorization-footer {
+.footer--authorization {
   margin-top: 6.4rem;
 }

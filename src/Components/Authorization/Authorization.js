@@ -4,22 +4,22 @@ import labels from "../../utils/labelText/lable.json";
 
 function Authorization() {
   return (
-    <div className="centered-container">
-      <div className="authorization-header">
+    <div className="centered-container--authorization">
+      <div className="header--authorization">
         <label>{labels.headerLable}</label>
       </div>
-      <div className="authorization-body">
-        <div className="text-field--container">
+      <div className="body--authorization">
+        <div className="field--authorization">
           <label>{labels.nameLabel}</label>
           <input />
         </div>
-        <div className="text-field--container">
+        <div className="field--authorization">
           <label>{labels.mailLabel}</label>
           <input />
         </div>
       </div>
-      <div className="authorization-footer">
-        <button className="black-button">{labels.buttonLabel}</button>
+      <div className="footer--authorization ">
+        <button className="black-button">{labels.buttonLabelStart}</button>
       </div>
     </div>
   );
