@@ -19,7 +19,7 @@
 .grid-content-welcomePage {
   display: grid;
   grid-template-columns:
-    minmax(44.3rem, 66.8rem)
+    minmax(43.6rem, 66.8rem)
     minmax(4.4rem, 13.6rem)
     minmax(71.8rem, 145.6rem);
 }
@@ -40,6 +40,8 @@
 .sideContainer-header--welcomPage {
   font-size: 78px;
   line-height: 74px;
+  letter-spacing: 1px;
+  margin: 0;
 }
 
 .sideContainer-body--welcomPage {
