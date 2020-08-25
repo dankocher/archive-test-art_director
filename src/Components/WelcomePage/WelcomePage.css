@@ -21,7 +21,7 @@
   grid-template-columns:
     minmax(44.3rem, 66.8rem)
     minmax(4.4rem, 13.6rem)
-    minmax(145.6rem, 71.8rem);
+    minmax(71.8rem, 145.6rem);
 }
 
 .centered-sideContainer--welcomPage {
@@ -33,7 +33,7 @@
 
 .imgContainer--welcomPage {
   height: 100%;
-  grid-area: 1/3;
+  grid-area: 1/3/2/4;
   background-color: #c4c4c4;
 }
 

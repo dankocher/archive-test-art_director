@@ -1,6 +1,6 @@
 import React from "react";
 import "./WelcomePage.css";
-import staticText from "../../utils/labelText/lable.json"
+import staticText from "../../utils/labelText/lable.json";
 
 const textFromServer = {
   header: "Оценка иллюстрации иллюстрации",
@@ -22,12 +22,12 @@ function WelcomePage() {
               {textFromServer.header}
             </h1>
             <div className="sideContainer-body--welcomPage">
-              <p>
-                {textFromServer.body}
-              </p>
+              <p>{textFromServer.body}</p>
             </div>
             <div className="sideContainer-footer--welcomPage">
-              <button className="black-button">{staticText.buttonLabelNext}</button>
+              <button className="black-button">
+                {staticText.buttonLabelNext}
+              </button>
             </div>
           </div>
         </div>
