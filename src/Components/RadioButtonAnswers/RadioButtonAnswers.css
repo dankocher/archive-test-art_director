@@ -1,0 +1,64 @@
+.answers--radioButtonAnswers > :not(:last-child) {
+	margin-bottom: 3.6rem;
+}
+
+.answer-title--radioButtonAnswers {
+	margin-bottom: 2.4rem;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 16px;
+	color: #323232;
+}
+
+.answer--radioButtonAnswers {
+	display: flex;
+}
+
+/* .wrapper-radioButton--radioButtonAnswers input {
+	height: 2rem;
+	width: 2rem;
+	border-image: yellow;
+	border-color: yellow;
+	border: 3px solid yellow !important;
+	background-color: brown;
+	cursor: pointer;
+} */
+
+.wrapper-radioButton--radioButtonAnswers input:after {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 15px;
+	top: -2px;
+	left: -1px;
+	position: relative;
+	background-color: #ffffff;
+	content: "";
+	display: inline-block;
+	visibility: visible;
+	border: 1px solid #EB5757;
+	cursor: pointer;
+}
+
+.wrapper-radioButton--radioButtonAnswers input:checked:after {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 15px;
+	top: -2px;
+	left: -1px;
+	position: relative;
+	background-color: #EB5757;
+	content: "";
+	display: inline-block;
+	visibility: visible;
+	border: 1px solid #EB5757;
+}
+
+.answer--radioButtonAnswers span {
+	margin-left: 2rem;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+	color: #323232;
+}
