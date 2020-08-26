@@ -41,7 +41,6 @@
   font-size: 78px;
   line-height: 74px;
   letter-spacing: 1px;
-  margin: 0;
 }
 
 .sideContainer-body--welcomPage {
@@ -61,6 +60,7 @@
   .sideContainer-header--welcomPage {
     font-size: 48px;
     line-height: 50px;
+    letter-spacing: 1px;
   }
   .sideContainer-body--welcomPage p {
     font-size: 18px;
