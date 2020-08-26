@@ -9,9 +9,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif, "Golos Text";
+  font-family: "Golos Text";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,11 +22,13 @@ code {
 .black-button {
   height: 6.1rem;
   width: 32.4rem;
+  padding: 0;
   border-radius: 0.5rem;
   border: 0.1rem solid #ffffff;
   background: #484848;
   font-size: 2rem;
   font-weight: 500;
+  line-height: 24px;
   color: #ffffff;
   cursor: pointer;
 }
