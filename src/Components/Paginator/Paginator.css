@@ -1,0 +1,13 @@
+.font-paginator {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 22px;
+	color: #323232;
+	margin: 0 2.7rem;
+}
+
+.hidden-button {
+	border: none;
+	display: flex;
+}

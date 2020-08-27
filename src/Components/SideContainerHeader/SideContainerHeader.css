@@ -1,0 +1,12 @@
+.header--SideContainerHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
+.header--SideContainerHeader span {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 22px;
+	color: #323232;
+}

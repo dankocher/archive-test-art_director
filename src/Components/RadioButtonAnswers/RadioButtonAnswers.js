@@ -1,6 +1,8 @@
 import React from "react";
 import "./RadioButtonAnswers.css";
 
+import CustomRadioButton from "../CustomRadioButton/CustomRadioButton"
+
 const exportText = {
 	answerTitleFirst: "Актуальность",
 	answerTitleSecond: "Качество",
@@ -18,7 +20,7 @@ function RadioButtonAnswers(props) {
 			</h3>
 			<div className="answer--radioButtonAnswers">
 				<div className="wrapper-radioButton--radioButtonAnswers">
-					<input style={chooseColor()} type="radio" value="true" />
+					<CustomRadioButton color="red"/>
 				</div>
 				<span style={chooseColor()}>{exportText.answer}</span>
 			</div>

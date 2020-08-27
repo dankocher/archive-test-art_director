@@ -1,0 +1,20 @@
+.task--SideContainerTask {
+	margin-bottom: 4rem;
+}
+
+.task--SideContainerTask h2 {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+	letter-spacing: 0.4px;
+}
+
+.task--SideContainerTask p {
+	margin-top: 2.4rem;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+	color: #323232;
+}
