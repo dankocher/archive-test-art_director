@@ -7,17 +7,24 @@
 		1fr
 		8.8rem /
 		minmax(5.5rem, 12.8rem)
-		1fr
+		minmax(80.4rem, 185.2rem)
 		minmax(5.5rem, 12.8rem);
 }
 
-.gridArea-header {
+.gridArea-header-MainContainerSplitPage {
 	grid-area: 1/1/2/4;
 	margin-left: 3.2rem;
 	margin-top: 3.2rem;
 }
 
-.gridArea-footer {
+.gridArea-body-MainContainerSplitPage {
+	grid-area: 2/2/3/3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.gridArea-footer-MainContainerSplitPage {
 	display: flex;
 	align-items: flex-end;
 	grid-area: 3/1/4/4;
