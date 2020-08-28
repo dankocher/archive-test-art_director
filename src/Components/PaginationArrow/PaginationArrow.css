@@ -1,0 +1,8 @@
+.hidden-button {
+	border: none;
+	display: flex;
+}
+
+.hidden-button:focus {
+	outline: 0;
+}
