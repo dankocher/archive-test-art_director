@@ -6,16 +6,22 @@ import MainContainerSplitPage from "../MainContainerSplitPage/MainContainerSplit
 import SideContainer from "../SideContainer/SideContainer";
 import SideContainerTask from "../SideContainerTask/SideContainerTask";
 import RadioButtonAnswers from "../RadioButtonAnswers/RadioButtonAnswers";
+import TextField from "../TextField/TextField";
+import BigTextMainContainer from "../BigTextMainContainer/BigTextMainContainer";
+import Carousel from "../Carousel/Carousel";
 
 function SplitPage() {
 	return (
 		<div className="grid-container--SplitPage">
 			<div>
-				<MainContainerSplitPage />
+				<MainContainerSplitPage mainContainerBody={<Carousel />} />
 			</div>
 			<div className="shadowing-rightContainer--SplitPage">
-				<SideContainer
+				{/* <SideContainer
 					args={[<SideContainerTask />, <RadioButtonAnswers color="red" />]}
+				/> */}
+				<SideContainer
+					args={[<SideContainerTask />, <TextField error={false} />]}
 				/>
 			</div>
 		</div>
