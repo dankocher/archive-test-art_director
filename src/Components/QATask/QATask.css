@@ -1,0 +1,23 @@
+.container--qATask {
+	margin-bottom: 2.8rem;
+}
+
+.container--qATask > :first-child {
+	margin-bottom: 0.8rem;
+}
+
+.question--qATask {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 22px;
+	color: #323232;
+}
+
+.description--qATask {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+	color: #6b6b6c;
+}

@@ -1,12 +1,10 @@
 import React from "react";
 import "./Timer.css";
 
-const exportText = {time: "05:15"};
-
-function Timer() {
+function Timer(props) {
 	return (
 		<>
-			<span className="font-timer">{exportText.time}</span>
+			<span className="font-timer">{props.time}</span>
 		</>
 	);
 }
