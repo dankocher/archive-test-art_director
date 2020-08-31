@@ -19,8 +19,6 @@
 
 .gridArea-body-MainContainerSplitPage {
 	grid-area: 2/2/3/3;
-	display: flex;
-	margin: auto;
 }
 
 .gridArea-footer-MainContainerSplitPage {

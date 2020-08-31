@@ -9,7 +9,7 @@ import TextField from "./Components/TextField/TextField";
 import QuestionPage from "./Components/QuestionPage/QuestionPage";
 
 function App() {
-	return <QuestionPage />;
+	return <SplitPage />;
 }
 
 export default App;

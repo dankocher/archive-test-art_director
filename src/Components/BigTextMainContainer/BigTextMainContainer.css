@@ -1,6 +1,27 @@
 .bigText-splitPage {
-	font-style: normal;
-	font-weight: 500;
-	font-size: 144px;
-	color: #323232;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12.292rem + (1vw - 0.452rem));
+  /* font-size: calc(5.834rem + 1vw); */
+  color: #323232;
+}
+
+/* font-size transition on HD window */
+/* @media screen and (max-width: 1920px) {
+  .bigText-splitPage {
+    font-size: calc(6.286rem + (1vw - 0.452rem));
+  }
+} */
+
+/* font-size transition between (small window and hd) / (HD and full-HD) */
+@media screen and (max-width: 2240px) {
+  .bigText-splitPage {
+    font-size: calc(8.132rem + (1vw - 0.452rem));
+  }
+}
+
+@media screen and (max-width: 1643px) {
+  .bigText-splitPage {
+    font-size: calc(6.286rem + (1vw - 0.452rem));
+  }
 }
