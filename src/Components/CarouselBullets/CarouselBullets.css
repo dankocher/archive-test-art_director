@@ -1,0 +1,12 @@
+.bullets-wrapper--carousel {
+	display: flex;
+	position: absolute;
+	bottom: 2rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+}
+
+.bullets-wrapper--carousel > :not(:last-child) {
+	margin-right: 0.8rem;
+}

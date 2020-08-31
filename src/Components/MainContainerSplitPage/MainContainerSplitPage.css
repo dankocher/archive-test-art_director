@@ -1,0 +1,32 @@
+.grid--mainContainerSplitPage {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template:
+		8.8rem
+		1fr
+		8.8rem /
+		minmax(5.5rem, 12.8rem)
+		minmax(80.4rem, 185.2rem)
+		minmax(5.5rem, 12.8rem);
+}
+
+.gridArea-header-MainContainerSplitPage {
+	grid-area: 1/1/2/4;
+	margin-left: 3.2rem;
+	margin-top: 3.2rem;
+}
+
+.gridArea-body-MainContainerSplitPage {
+	grid-area: 2/2/3/3;
+	display: flex;
+	margin: auto;
+}
+
+.gridArea-footer-MainContainerSplitPage {
+	display: flex;
+	align-items: flex-end;
+	grid-area: 3/1/4/4;
+	margin-left: 3.2rem;
+	margin-bottom: 3rem;
+}

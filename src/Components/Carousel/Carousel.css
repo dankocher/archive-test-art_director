@@ -1,0 +1,10 @@
+.centred-content--Carousel {
+	display: flex;
+	position: relative;
+	height: calc(100vh - 17.6rem);
+	width: 100%;
+}
+
+.centred-content--Carousel img {
+	margin: auto;
+}

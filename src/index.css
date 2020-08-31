@@ -4,7 +4,7 @@
 	font-size: 10px;
 }
 
-body * {
+body {
 	margin: 0;
 	padding: 0;
 	font-family: "Golos Text";
@@ -12,20 +12,17 @@ body * {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.black-button {
-	height: 6.1rem;
-	width: 32.4rem;
-	border-radius: 0.5rem;
-	border: 0.1rem solid #ffffff;
-	background: #484848;
-	font-size: 2rem;
-	font-weight: 500;
-	line-height: 24px;
-	color: #ffffff;
-	cursor: pointer;
+body * {
+	margin: 0;
+	padding: 0;
 }
 
-.black-button:hover {
-	border: 0.1rem solid #323232;
-	background-color: #323232;
+.hidden-button {
+	display: flex;
+	border: none;
+	background-color: transparent;
+}
+
+.hidden-button:focus {
+	outline: 0;
 }
