@@ -1,15 +1,32 @@
-.carouselArrow-left {
-	left: 0;
+.arrowIcon-left,
+.arrowIcon-right {
+	content: url(../../utils/img/arrow-icon.png);
 }
 
-.carouselArrow-right {
-	right: 0;
+.arrowIcon-left {
+	transform: rotate(180deg);
 }
 
 .carouselArrow-left,
 .carouselArrow-right {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	z-index: 10;
+	display: flex;
+	height: 4.8rem;
+	width: 4.8rem;
+	border-radius: 0.4rem;
+}
+
+.light--carouselArrow {
+	background-color: #d1d1d9;
+}
+
+.light--carouselArrow:hover {
+	background-color: #6b6b6c;
+}
+
+.dark--carouselArrow {
+	background-color: #6b6b6c;
+}
+
+.dark--carouselArrow:hover {
+	background-color: #484848;
 }

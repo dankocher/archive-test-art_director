@@ -1,74 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
 import "./Carousel.css";
 
-import { setImageLength } from "../../actions";
+import {setImageLength, setIsHiddenPhotoModal} from "../../actions";
 import imgList from "../../utils/imgList";
 
 import CarouselArrow from "../CarouselArrow/CarouselArrow";
 import CarouselBullets from "../CarouselBullets/CarouselBullets";
-import imga from "../../utils/img/noImgBig.png";
-
-const arrOfImages = [1, 2, 3, 4, 5, 6];
+import PhotoModal from "../PhotoModal/PhotoModal";
 
 function Carousel() {
-  const [imageList, setImageList] = useState([]);
-  const dispatch = useDispatch();
-  const currentImageIndex = useSelector((state) => state.current);
+	const [imageList, setImageList] = useState([]);
+	const [hoveredImage, setHoveredImage] = useState(true);
+	const dispatch = useDispatch();
+	const currentImageIndex = useSelector((state) => state.current);
+	const isHiddenPhotoModal = useSelector((state) => state.isHiddenPhotoModal);
+	const currentImgUrl =
+		imageList === undefined || imageList.length === 0
+			? require("../../utils/img/noImgBig.png")
+			: imageList[currentImageIndex]["download_url"];
 
-  const isOneImg = () => {
-    return (
-      imageList === undefined ||
-      imageList.length === 0 ||
-      imageList.length === 1
-    );
-  };
+	useEffect(() => {
+		setImageList(imgList);
+		dispatch(setImageLength(imgList.length));
+	}, []);
 
-  useEffect(() => {
-    setImageList(imgList);
-    dispatch(setImageLength(imgList.length));
-  }, []);
+	const handleImgOnClick = () => {
+		dispatch(setIsHiddenPhotoModal());
+	};
 
-  //   useEffect(() => {
-  //     fetch("http://picsum.photos/v2/list?page=1&limit=10")
-  //       .then((res) => {
-  // 		console.log(res);
-  // 		debugger
-  //         if (!res.ok) {
-  //           throw new Error("Network response was not ok");
-  //         }
-  //         return res.json();
-  //       })
-  //       .then((result) => {
-  //         setImageList(result);
-  //         dispatch(setImageLength(result.length));
-  //         console.log(imageList);
-  //         console.log(currentImageIndex);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error:", error);
-  //       });
-  //   }, []);
+	const isOneImg = () => {
+		return (
+			imageList === undefined ||
+			imageList.length === 0 ||
+			imageList.length === 1
+		);
+	};
 
-  return (
-    <div className="centred-content--Carousel">
-      {isOneImg() ? null : <CarouselArrow direction="left" />}
-      <img
-        style={{ maxWidth: "100%", maxHeight: "100%" }}
-        src={
-          imageList === undefined || imageList.length == 0
-            ? "../../utils/img/noImgBig.png"
-            : imageList[currentImageIndex]["download_url"]
-        }
-        alt={""}
-      />
-      {isOneImg() ? null : <CarouselArrow direction="right" />}
+	//   useEffect(() => {
+	//     fetch("http://picsum.photos/v2/list?page=1&limit=10")
+	//       .then((res) => {
+	// 		console.log(res);
+	// 		debugger
+	//         if (!res.ok) {
+	//           throw new Error("Network response was not ok");
+	//         }
+	//         return res.json();
+	//       })
+	//       .then((result) => {
+	//         setImageList(result);
+	//         dispatch(setImageLength(result.length));
+	//         console.log(imageList);
+	//         console.log(currentImageIndex);
+	//       })
+	//       .catch((error) => {
+	//         console.error("Error:", error);
+	//       });
+	//   }, []);
 
-      {isOneImg() ? null : (
-        <CarouselBullets arrOfImages={imageList} active={currentImageIndex} />
-      )}
-    </div>
-  );
+	return (
+		<>
+			<PhotoModal isHidden={isHiddenPhotoModal} currentImgUrl={currentImgUrl} />
+			<div
+				className="centred-content--Carousel"
+				onMouseEnter={() => setHoveredImage(false)}
+				onMouseLeave={() => setHoveredImage(true)}
+			>
+				{isOneImg() ? null : (
+					<div className="leftArrow-position--carousel centred-carouselArrow">
+						<CarouselArrow
+							isHidden={hoveredImage}
+							isToLeft={true}
+							isDark={false}
+						/>
+					</div>
+				)}
+				<img
+					onClick={handleImgOnClick}
+					style={isHiddenPhotoModal ? {} : {visibility: "hidden"}}
+					src={currentImgUrl}
+					alt={""}
+				/>
+				{isOneImg() ? null : (
+					<div className="rightArrow-position--carousel centred-carouselArrow">
+						<CarouselArrow isHidden={hoveredImage} isDark={false} />
+					</div>
+				)}
+
+				{isOneImg() ? null : (
+					<CarouselBullets arrOfImages={imageList} active={currentImageIndex} />
+				)}
+			</div>
+		</>
+	);
 }
 
 export default Carousel;
