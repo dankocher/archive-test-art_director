@@ -3,6 +3,7 @@ export const SET_IMAGE_INDEX = "SET_IMAGE_INDEX";
 export const POSITIVE_ITERATE_IMAGE_INDEX = "POSITIVE_ITERATE_IMAGE_INDEX";
 export const NEGATIVE_ITERATE_IMAGE_INDEX = "NEGATIVE_ITERATE_IMAGE_INDEX";
 export const SET_IS_HIDDEN_PHOTOMODAL = "SET_IS_HIDDEN_PHOTOMODAL";
+export const SET_SCALE = "SET_SCALE";
 
 export const setImageLength = (length) => ({
 	type: SET_IMAGE_LENGTH,
@@ -24,4 +25,9 @@ export const negativeIterateImageIndex = () => ({
 
 export const setIsHiddenPhotoModal = () => ({
 	type: SET_IS_HIDDEN_PHOTOMODAL,
+});
+
+export const setScalePhotoModal = (scale) => ({
+	type: SET_SCALE,
+	payload: scale,
 });

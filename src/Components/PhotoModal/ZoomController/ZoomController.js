@@ -1,82 +1,103 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
+import {setScalePhotoModal} from "../../../actions/";
 
 import "./ZoomController.css";
 
 const classNames = require("classnames");
 
-function ZoomController({zoomIn, zoomOut, resetTransform, maxZoom = 1.5}) {
-	// const zoomStep = 0.25;
-	// const getIsZoomed = () => prismaZoom.getZoom() !== 1;
-	// const getIsMaxZoomed = () => prismaZoom.getZoom() === maxZoom;
-	// const setZomeValues = () => {
-	// 	setIsZoomed(getIsZoomed());
-	// 	setIsMaxZoomed(getIsMaxZoomed());
-	// };
+function ZoomController({
+	setScale,
+	resetTransform,
+	zoomStep = 0.25,
+	maxZoom = 1.5,
+}) {
+	const dispatch = useDispatch();
+	const scale = useSelector((state) => state.scale);
+	const getIsZoomed = () => scale !== 1;
+	const getIsMaxZoomed = () => scale === maxZoom;
 
-	// const [isZoomed, setIsZoomed] = useState(getIsZoomed);
-	// const [isMaxZoomed, setIsMaxZoomed] = useState(getIsMaxZoomed);
+	const [isZoomed, setIsZoomed] = useState(getIsZoomed);
+	const [isMaxZoomed, setIsMaxZoomed] = useState(getIsMaxZoomed);
 
-	// const zoomOutIcon = classNames("icon", {
-	// 	"zoomOutIcon-inactive": !isZoomed,
-	// 	"zoomOutIcon-active": isZoomed,
-	// });
+	useEffect(() => {
+		if (scale !== 1) {
+			setScale(scale);
+		}
+		setZomeValues();
+	}, [scale]);
 
-	// const resetZoomIcon = classNames("icon", {
-	// 	"resetZoomIcon-inactive": !isZoomed,
-	// 	"resetZoomIcon-active": isZoomed,
-	// });
+	const setZomeValues = () => {
+		setIsZoomed(getIsZoomed);
+		setIsMaxZoomed(getIsMaxZoomed);
+	};
 
-	// const zoomInIcon = classNames("icon", {
-	// 	"zoomInIcon-inactive": isMaxZoomed,
-	// 	"zoomInIcon-active": !isMaxZoomed,
-	// });
+	const zoomOutIcon = classNames("icon", {
+		"zoomOutIcon-inactive": !isZoomed,
+		"zoomOutIcon-active": isZoomed,
+	});
 
-	// const handlerZoomOutButton = async () => {
-	// 	if (!isZoomed) {
-	// 		return;
-	// 	}
-	// 	await prismaZoom.zoomOut(zoomStep);
-	// 	setZomeValues();
-	// };
+	const resetZoomIcon = classNames("icon", {
+		"resetZoomIcon-inactive": !isZoomed,
+		"resetZoomIcon-active": isZoomed,
+	});
 
-	// const handlerResetZoomButton = async () => {
-	// 	if (!isZoomed) {
-	// 		return;
-	// 	}
-	// 	await prismaZoom.reset();
-	// 	setZomeValues();
-	// };
+	const zoomInIcon = classNames("icon", {
+		"zoomInIcon-inactive": isMaxZoomed,
+		"zoomInIcon-active": !isMaxZoomed,
+	});
 
-	// const handlerZoomInButton = async () => {
-	// 	if (isMaxZoomed) {
-	// 		return;
-	// 	}
-	// 	await prismaZoom.zoomIn(zoomStep);
-	// 	setZomeValues();
-	// };
+	const handlerZoomOutButton = (event) => {
+		event.stopPropagation();
+		if (!isZoomed) {
+			return;
+		}
+
+		resetTransform(event);
+		dispatch(setScalePhotoModal(scale - zoomStep));
+	};
+
+	const handlerResetZoomButton = (event) => {
+		event.stopPropagation();
+		if (!isZoomed) {
+			return;
+		}
+
+		console.log("SASKE, vernis v derevnu");
+		dispatch(setScalePhotoModal(1));
+	};
+
+	const handlerZoomInButton = (event) => {
+		event.stopPropagation();
+		if (isMaxZoomed) {
+			return;
+		}
+		dispatch(setScalePhotoModal(scale + zoomStep));
+	};
 
 	return (
 		<>
 			<button
-				// disabled={!isZoomed}
-				onClick={zoomOut}
+				disabled={!isZoomed}
+				onClick={handlerZoomOutButton}
 				className="hidden-button zoom-controller-button"
 			>
-				{/* <i className={zoomOutIcon}></i> */}
+				<i className={zoomOutIcon}></i>
 			</button>
 			<button
-				// disabled={!isZoomed}
-				onClick={resetTransform}
+				disabled={!isZoomed}
+				onClick={handlerResetZoomButton}
 				className="hidden-button zoom-controller-button"
 			>
-				{/* <i className={resetZoomIcon}></i> */}
+				<i className={resetZoomIcon}></i>
 			</button>
 			<button
-				// disabled={isMaxZoomed}
-				onClick={zoomIn}
+				disabled={isMaxZoomed}
+				onClick={handlerZoomInButton}
 				className="hidden-button zoom-controller-button"
 			>
-				{/* <i className={zoomInIcon}></i> */}
+				<i className={zoomInIcon}></i>
 			</button>
 		</>
 	);

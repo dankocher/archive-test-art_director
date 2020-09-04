@@ -1,6 +1,5 @@
-import React, {useState, useCallback, useRef} from "react";
+import React, {useState, useEffect, useCallback, useRef} from "react";
 import {useDispatch} from "react-redux";
-// import PrismaZoom from "react-prismazoom";
 
 import "./PhotoModal.css";
 
@@ -10,21 +9,11 @@ import CarouselArrow from "../CarouselArrow/CarouselArrow";
 import ZoomController from "./ZoomController/ZoomController";
 import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch";
 
+const MAX_ZOOM = 1.75;
+const ZOOM_STEP = 0.25;
+
 function PhotoModal({isHidden = true, currentImgUrl}) {
 	const dispatch = useDispatch();
-	// const prismaZoom = useRef(null);
-
-	const maxZoom = 1.25;
-
-	// const [prismaZoom, setPrismaZoom] = useState({});
-
-	// const measuredRef = useCallback((node) => {
-	// 	if (node !== null) {
-	// 		console.log(node);
-	// 		setPrismaZoom(node);
-	// 	}
-	// }, []);
-
 	const style = isHidden ? {visibility: "hidden"} : {};
 
 	const handlerCloseButton = (event, resetTransform) => {
@@ -36,11 +25,9 @@ function PhotoModal({isHidden = true, currentImgUrl}) {
 		<TransformWrapper
 			wheel={{disabled: true}}
 			doubleClick={{disabled: true}}
-			zoomIn={{step: 6}}
-			zoomOut={{step: 6}}
 			defaultScale={1}
 		>
-			{({zoomIn, zoomOut, resetTransform, ...rest}) => (
+			{({setScale, resetTransform, ...rest}) => (
 				<React.Fragment>
 					<div style={style} className={"main-container--photoModal"}>
 						<div className="wrapper-relative--photoModal">
@@ -78,15 +65,11 @@ function PhotoModal({isHidden = true, currentImgUrl}) {
 						<div className="wrapper-relative--photoModal">
 							<div className="zoomController-container--photoModal">
 								<ZoomController
-									zoomIn={zoomIn}
-									zoomOut={zoomOut}
+									setScale={setScale}
+									maxZoom={MAX_ZOOM}
+									zoomStep={ZOOM_STEP}
 									resetTransform={resetTransform}
-									maxZoom={maxZoom}
 								/>
-								{/* {Object.keys(prismaZoom).length === 0 &&
-				prismaZoom.constructor === Object ? null : (
-					<ZoomController maxZoom={maxZoom} prismaZoom={prismaZoom} />
-				)} */}
 							</div>
 						</div>
 					</div>

@@ -4,9 +4,15 @@ import {
 	NEGATIVE_ITERATE_IMAGE_INDEX,
 	SET_IMAGE_INDEX,
 	SET_IS_HIDDEN_PHOTOMODAL,
+	SET_SCALE,
 } from "../actions";
 
-const initialState = {length: 0, current: 0, isHiddenPhotoModal: true};
+const initialState = {
+	length: 0,
+	current: 0,
+	isHiddenPhotoModal: true,
+	scale: 1,
+};
 
 function rootReducer(state = initialState, action) {
 	switch (action.type) {
@@ -26,6 +32,8 @@ function rootReducer(state = initialState, action) {
 			return {...state, current: action.payload};
 		case SET_IS_HIDDEN_PHOTOMODAL:
 			return {...state, isHiddenPhotoModal: !state.isHiddenPhotoModal};
+		case SET_SCALE:
+			return {...state, scale: action.payload};
 		default:
 			return state;
 	}
