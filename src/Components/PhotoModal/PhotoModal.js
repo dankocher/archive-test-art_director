@@ -1,20 +1,20 @@
-import React, {useState, useEffect, useCallback, useRef} from "react";
-import {useDispatch} from "react-redux";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import "./PhotoModal.css";
 
-import {setIsHiddenPhotoModal} from "../../actions";
+import { setIsHiddenPhotoModal } from "../../actions";
 
-import CarouselArrow from "../CarouselArrow/CarouselArrow";
+import Arrow from "../Carousel/Arrow/Arrow";
 import ZoomController from "./ZoomController/ZoomController";
-import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const MAX_ZOOM = 1.75;
 const ZOOM_STEP = 0.25;
 
-function PhotoModal({isHidden = true, currentImgUrl}) {
+function PhotoModal({ isHidden = true, currentImgUrl }) {
 	const dispatch = useDispatch();
-	const style = isHidden ? {visibility: "hidden"} : {};
+	const style = isHidden ? { visibility: "hidden" } : {};
 
 	const handlerCloseButton = (event, resetTransform) => {
 		event.stopPropagation();
@@ -23,11 +23,11 @@ function PhotoModal({isHidden = true, currentImgUrl}) {
 
 	return (
 		<TransformWrapper
-			wheel={{disabled: true}}
-			doubleClick={{disabled: true}}
+			wheel={{ disabled: true }}
+			doubleClick={{ disabled: true }}
 			defaultScale={1}
 		>
-			{({setScale, resetTransform, ...rest}) => (
+			{({ setScale, resetTransform, ...rest }) => (
 				<React.Fragment>
 					<div style={style} className={"main-container--photoModal"}>
 						<div className="wrapper-relative--photoModal">
@@ -42,13 +42,13 @@ function PhotoModal({isHidden = true, currentImgUrl}) {
 						<div
 							className={"centred-carouselArrow leftArrow-position--photoModal"}
 						>
-							<CarouselArrow isDark={true} isToLeft={true} />
+							<Arrow isDark={true} isToLeft={true} />
 						</div>
 
 						<div className={"img-container--photoModal"}>
 							<TransformComponent>
 								<img
-									style={{maxWidth: "100%", maxHeight: "100%"}}
+									style={{ maxWidth: "100%", maxHeight: "100%" }}
 									src={currentImgUrl}
 									alt={""}
 								/>
@@ -60,7 +60,7 @@ function PhotoModal({isHidden = true, currentImgUrl}) {
 								"centred-carouselArrow rightArrow-position--photoModal"
 							}
 						>
-							<CarouselArrow isDark={true} />
+							<Arrow isDark={true} />
 						</div>
 						<div className="wrapper-relative--photoModal">
 							<div className="zoomController-container--photoModal">

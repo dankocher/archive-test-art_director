@@ -1,15 +1,15 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import "./CarouselArrow.css";
+import "./Arrow.css";
 
 import {
 	positiveIterateImageIndex,
 	negativeIterateImageIndex,
-} from "../../actions";
+} from "../../../actions";
 
 const classNames = require("classnames");
 
-function CarouselArrow({isDark = false, isToLeft = false, isHidden = false}) {
+function Arrow({isDark = false, isToLeft = false, isHidden = false}) {
 	const dispatch = useDispatch();
 
 	const handlerLeftArrow = (event) => {
@@ -47,4 +47,4 @@ function CarouselArrow({isDark = false, isToLeft = false, isHidden = false}) {
 	);
 }
 
-export default CarouselArrow;
+export default Arrow;

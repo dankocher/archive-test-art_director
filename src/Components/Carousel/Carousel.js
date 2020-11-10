@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Carousel.css";
 
-import {setImageLength, setIsHiddenPhotoModal} from "../../actions";
+import { setImageLength, setIsHiddenPhotoModal } from "../../actions";
 import imgList from "../../utils/imgList";
 
-import CarouselArrow from "../CarouselArrow/CarouselArrow";
-import CarouselBullets from "../CarouselBullets/CarouselBullets";
+import Arrow from "./Arrow/Arrow";
+import Bullets from "./Bullets/Bullets";
 import PhotoModal from "../PhotoModal/PhotoModal";
 
 function Carousel() {
@@ -68,7 +68,7 @@ function Carousel() {
 			>
 				{isOneImg() ? null : (
 					<div className="leftArrow-position--carousel centred-carouselArrow">
-						<CarouselArrow
+						<Arrow
 							isHidden={hoveredImage}
 							isToLeft={true}
 							isDark={false}
@@ -77,18 +77,18 @@ function Carousel() {
 				)}
 				<img
 					onClick={handleImgOnClick}
-					style={isHiddenPhotoModal ? {} : {visibility: "hidden"}}
+					style={isHiddenPhotoModal ? {} : { visibility: "hidden" }}
 					src={currentImgUrl}
 					alt={""}
 				/>
 				{isOneImg() ? null : (
 					<div className="rightArrow-position--carousel centred-carouselArrow">
-						<CarouselArrow isHidden={hoveredImage} isDark={false} />
+						<Arrow isHidden={hoveredImage} isDark={false} />
 					</div>
 				)}
 
 				{isOneImg() ? null : (
-					<CarouselBullets arrOfImages={imageList} active={currentImageIndex} />
+					<Bullets arrOfImages={imageList} active={currentImageIndex} />
 				)}
 			</div>
 		</>
