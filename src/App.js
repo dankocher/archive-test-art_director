@@ -8,6 +8,8 @@ import SplitPage from "./Components/SplitPage/SplitPage";
 import TextField from "./Components/TextField/TextField";
 import QuestionPage from "./Components/QuestionPage/QuestionPage";
 
+import PhotoModal from "./Components/PhotoModal/PhotoModal";
+
 function App() {
 	return <SplitPage />;
 }
