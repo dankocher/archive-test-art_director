@@ -1,7 +1,7 @@
-.arrowIcon-left,
-.arrowIcon-right {
-	content: url(../../../utils/img/arrow-icon.png);
-}
+// .arrowIcon-left,
+// .arrowIcon-right {
+// 	content: url(../../../utils/img/arrow-icon.png);
+// }
 
 .arrowIcon-left {
 	transform: rotate(180deg);
@@ -16,17 +16,25 @@
 }
 
 .light--carouselArrow {
-	background-color: #d1d1d9;
+	rect {
+		fill: #d1d1d9;
+	}
 }
 
 .light--carouselArrow:hover {
-	background-color: #6b6b6c;
+	rect {
+		fill: #6b6b6c;
+	}
 }
 
 .dark--carouselArrow {
-	background-color: #6b6b6c;
+	rect {
+		fill: #6b6b6c;
+	}
 }
 
 .dark--carouselArrow:hover {
-	background-color: #484848;
+	rect {
+		fill: #484848;
+	}
 }

@@ -1,4 +1,4 @@
-@import "./utils/font/golostext/golostext.css";
+@import "./assets/fonts/golostext/golostext.css";
 
 :root {
 	font-size: 10px;
@@ -25,8 +25,4 @@ body * {
 
 .hidden-button:focus {
 	outline: 0;
-}
-
-.icon {
-	margin: auto;
 }

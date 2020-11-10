@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import "./ZoomController.scss";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {setScalePhotoModal} from "../../../actions/";
+import { setScalePhotoModal } from "../../../actions/";
 
-import "./ZoomController.css";
+import resetZoomIcon from "../../../helpers/icons/rezet-zoom-icon";
+import zoomOutIcon from "../../../helpers/icons/zoom-out-icon";
+import zoomInIcon from "../../../helpers/icons/zoom-in-icon";
 
 const classNames = require("classnames");
 
@@ -33,19 +36,19 @@ function ZoomController({
 		setIsMaxZoomed(getIsMaxZoomed);
 	};
 
-	const zoomOutIcon = classNames("icon", {
-		"zoomOutIcon-inactive": !isZoomed,
-		"zoomOutIcon-active": isZoomed,
+	const zoomOutClass = classNames({
+		"": !isZoomed,
+		activeColor: isZoomed,
 	});
 
-	const resetZoomIcon = classNames("icon", {
-		"resetZoomIcon-inactive": !isZoomed,
-		"resetZoomIcon-active": isZoomed,
+	const resetZoomClass = classNames({
+		"": !isZoomed,
+		activeColor: isZoomed,
 	});
 
-	const zoomInIcon = classNames("icon", {
-		"zoomInIcon-inactive": isMaxZoomed,
-		"zoomInIcon-active": !isMaxZoomed,
+	const zoomInClass = classNames({
+		"": isMaxZoomed,
+		activeColor: !isMaxZoomed,
 	});
 
 	const handlerZoomOutButton = (event) => {
@@ -75,7 +78,7 @@ function ZoomController({
 		}
 		dispatch(setScalePhotoModal(scale + zoomStep));
 	};
-
+	console.log(isZoomed);
 	return (
 		<>
 			<button
@@ -83,21 +86,21 @@ function ZoomController({
 				onClick={handlerZoomOutButton}
 				className="hidden-button zoom-controller-button"
 			>
-				<i className={zoomOutIcon}></i>
+				<i className={zoomOutClass}>{zoomOutIcon}</i>
 			</button>
 			<button
 				disabled={!isZoomed}
 				onClick={handlerResetZoomButton}
 				className="hidden-button zoom-controller-button"
 			>
-				<i className={resetZoomIcon}></i>
+				<i className={resetZoomClass}>{resetZoomIcon}</i>
 			</button>
 			<button
 				disabled={isMaxZoomed}
 				onClick={handlerZoomInButton}
 				className="hidden-button zoom-controller-button"
 			>
-				<i className={zoomInIcon}></i>
+				<i className={zoomInClass}>{zoomInIcon}</i>
 			</button>
 		</>
 	);

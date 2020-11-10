@@ -1,15 +1,17 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import "./Arrow.css";
+import { useDispatch } from "react-redux";
+import "./Arrow.scss";
 
 import {
 	positiveIterateImageIndex,
 	negativeIterateImageIndex,
 } from "../../../actions";
 
+import arrowBtnIcon from "../../../helpers/icons/arrow-button";
+
 const classNames = require("classnames");
 
-function Arrow({isDark = false, isToLeft = false, isHidden = false}) {
+function Arrow({ isDark = false, isToLeft = false, isHidden = false }) {
 	const dispatch = useDispatch();
 
 	const handlerLeftArrow = (event) => {
@@ -27,12 +29,7 @@ function Arrow({isDark = false, isToLeft = false, isHidden = false}) {
 		"light--carouselArrow": !isDark,
 	});
 
-	const arrowIcon = classNames("icon", {
-		"arrowIcon-left": isToLeft,
-		"arrowIcon-right": !isToLeft,
-	});
-
-	const style = isHidden ? {visibility: "hidden"} : {};
+	const style = isHidden ? { visibility: "hidden" } : {};
 
 	return (
 		<>
@@ -41,7 +38,7 @@ function Arrow({isDark = false, isToLeft = false, isHidden = false}) {
 				className={arrowClass}
 				onClick={isToLeft ? handlerLeftArrow : handlerRightArrow}
 			>
-				<i className={arrowIcon}></i>
+				<i className={isToLeft ? "arrowIcon-left" : null}>{arrowBtnIcon}</i>
 			</button>
 		</>
 	);
