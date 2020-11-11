@@ -5,9 +5,9 @@ import "./Arrow.scss";
 import {
 	positiveIterateImageIndex,
 	negativeIterateImageIndex,
-} from "../../../actions";
+} from "../../../../../actions";
 
-import arrowBtnIcon from "../../../helpers/icons/arrow-button";
+import arrowBtnIcon from "../../../../../helpers/icons/arrow-button";
 
 const classNames = require("classnames");
 

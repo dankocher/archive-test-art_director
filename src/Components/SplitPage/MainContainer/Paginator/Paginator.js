@@ -1,7 +1,7 @@
 import React from "react";
 import "./Paginator.css";
 
-import PaginationArrow from "../PaginationArrow/PaginationArrow";
+import PaginationArrow from "../../../PaginationArrow/PaginationArrow";
 
 const exportText = {page: "Изображение 5 из 10"};
 

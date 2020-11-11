@@ -1,5 +1,5 @@
 import React from "react";
-import "./SideContainerHeader.css";
+import "./TaskInformation.css";
 
 import Timer from "../Timer/Timer";
 

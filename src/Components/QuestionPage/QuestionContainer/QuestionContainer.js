@@ -1,7 +1,7 @@
 import React from "react";
 import "./QuestionContainer.css";
 
-import TextField from "../TextField/TextField";
+import TextField from "../../TextField/TextField";
 
 function QuestionContainer(props) {
   return (

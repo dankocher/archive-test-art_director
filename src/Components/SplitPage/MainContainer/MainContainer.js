@@ -1,12 +1,12 @@
 import React from "react";
-import "./MainContainerSplitPage.css";
+import "./MainContainer.css";
 
-import Timer from "../Timer/Timer";
-import Paginator from "../Paginator/Paginator";
+import Timer from "../../Timer/Timer";
+import Paginator from "./Paginator/Paginator";
 
 const exportText = {time: "05:15"};
 
-function MainContainerSplitPage(props) {
+function MainContainer(props) {
 	return (
 		<div className="grid--mainContainerSplitPage">
 			<div className="gridArea-header-MainContainerSplitPage">
@@ -22,4 +22,4 @@ function MainContainerSplitPage(props) {
 	);
 }
 
-export default MainContainerSplitPage;
+export default MainContainer;

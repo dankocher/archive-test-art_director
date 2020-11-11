@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Carousel.css";
 
-import { setImageLength, setIsHiddenPhotoModal } from "../../actions";
-import imgList from "../../utils/imgList";
+import { setImageLength, setIsHiddenPhotoModal } from "../../../../actions";
+import imgList from "../../../../utils/imgList";
 
 import Arrow from "./Arrow/Arrow";
 import Bullets from "./Bullets/Bullets";
-import PhotoModal from "../PhotoModal/PhotoModal";
+import PhotoModal from "../../../PhotoModal/PhotoModal";
 
 function Carousel() {
 	const [imageList, setImageList] = useState([]);
@@ -17,7 +17,7 @@ function Carousel() {
 	const isHiddenPhotoModal = useSelector((state) => state.isHiddenPhotoModal);
 	const currentImgUrl =
 		imageList === undefined || imageList.length === 0
-			? require("../../utils/img/noImgBig.png")
+			? require("../../../../utils/img/noImgBig.png")
 			: imageList[currentImageIndex]["download_url"];
 
 	useEffect(() => {
