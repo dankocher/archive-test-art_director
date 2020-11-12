@@ -1,5 +1,5 @@
 import React from "react";
-import "./BigTextMainContainer.css";
+import "./BigText.css";
 
 const exportText = "Майндфулнесс";
 

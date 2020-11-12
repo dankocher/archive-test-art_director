@@ -5,9 +5,9 @@ import MainContainer from "./MainContainer/MainContainer";
 
 import SideContainer from "./SideContainer/SideContainer";
 import SideContainerTask from "./SideContainer/SideContainerTask/SideContainerTask";
-import RadioButtonAnswers from "../RadioButtonAnswers/RadioButtonAnswers";
+import RadioButtonAnswers from "./SideContainer/RadioButtonAnswers/RadioButtonAnswers";
 import TextField from "../TextField/TextField";
-import BigTextMainContainer from "./MainContainer/BigTextMainContainer/BigTextMainContainer";
+import BigTextMainContainer from "./MainContainer/BigText/BigText";
 import Carousel from "./MainContainer/Carousel/Carousel";
 
 function SplitPage() {

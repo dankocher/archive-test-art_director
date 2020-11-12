@@ -78,7 +78,7 @@ function ZoomController({
 		}
 		dispatch(setScalePhotoModal(scale + zoomStep));
 	};
-	console.log(isZoomed);
+	// console.log(isZoomed);
 	return (
 		<>
 			<button
