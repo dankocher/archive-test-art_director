@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Bullet.css";
 
-import { setImageIndex } from "../../../../../../actions";
+import { setImageIndex } from "../../../../../../redux/actions";
 
 function Bullet(props) {
 	const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import "./Arrow.scss";
 import {
 	positiveIterateImageIndex,
 	negativeIterateImageIndex,
-} from "../../../../../actions";
+} from "../../../../../redux/actions";
 
 import arrowBtnIcon from "../../../../../helpers/icons/arrow-button";
 

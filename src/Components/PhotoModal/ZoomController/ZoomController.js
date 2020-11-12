@@ -2,7 +2,7 @@ import "./ZoomController.scss";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setScalePhotoModal } from "../../../actions/";
+import { setScalePhotoModal } from "../../../redux/actions";
 
 import resetZoomIcon from "../../../helpers/icons/rezet-zoom-icon";
 import zoomOutIcon from "../../../helpers/icons/zoom-out-icon";
