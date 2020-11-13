@@ -5,7 +5,7 @@ import {
 	SET_IMAGE_INDEX,
 	SET_IS_HIDDEN_PHOTOMODAL,
 	SET_SCALE,
-} from "../actions";
+} from "../actions/caruselActions";
 
 const initialState = {
 	length: 0,

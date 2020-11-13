@@ -1,3 +1,5 @@
+@import "../../assets/styles/foundations.scss";
+
 .container {
 	display: flex;
 
@@ -24,7 +26,7 @@
 	.wrapper {
 		width: 32.4rem;
 
-		& > :not(:last-child) {
+		& > :first-child {
 			margin-bottom: 2rem;
 		}
 
@@ -40,14 +42,23 @@
 			height: 8.9rem;
 
 			input {
-				height: 5.6rem;
-				border: 0.1rem solid #d1d1d9;
+				height: 6rem;
+				border: 0.1rem solid $neutral-2;
 				border-radius: 0.5rem;
+				outline: none !important;
+
+				&:focus:not(.error) {
+					border: 0.2rem solid $blue;
+				}
 			}
 
 			label {
 				font-size: 18px;
-				color: #323232;
+				color: $neutral-6;
+			}
+
+			.error {
+				border: 0.2rem solid $red;
 			}
 		}
 	}

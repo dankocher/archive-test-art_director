@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Carousel.css";
 
-import { setImageLength, setIsHiddenPhotoModal } from "../../../../redux/actions";
+import { setImageLength, setIsHiddenPhotoModal } from "../../../../redux/actions/caruselActions";
 import imgList from "../../../../utils/imgList";
 
 import Arrow from "./Arrow/Arrow";

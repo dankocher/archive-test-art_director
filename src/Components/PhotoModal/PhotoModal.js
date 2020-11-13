@@ -2,7 +2,7 @@ import "./PhotoModal.css";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { setIsHiddenPhotoModal } from "../../redux/actions";
+import { setIsHiddenPhotoModal } from "../../redux/actions/caruselActions";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
