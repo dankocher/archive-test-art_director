@@ -1,5 +1,5 @@
 import React from "react";
-import "./WelcomePage.css";
+import "./WelcomeScreen.css";
 import staticText from "../../utils/labelText/lable.json";
 
 import Button from "../Button/Button";
@@ -14,7 +14,7 @@ const textFromServer = {
     изображено.симпатией/антипатией к тому, что изображено.А`,
 };
 
-function WelcomePage() {
+function WelcomeScreen() {
 	return (
 		<div className="grid-container--welcomePage">
 			<div className="centered-content--welcomePage grid-content-welcomePage">
@@ -37,4 +37,4 @@ function WelcomePage() {
 	);
 }
 
-export default WelcomePage;
+export default WelcomeScreen;

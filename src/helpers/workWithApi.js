@@ -16,3 +16,12 @@ export const getTaskIdListFromServer = async (_id) => {
 	}
 	return res;
 };
+
+export const getTaskFromServer = async (_id) => {
+	const res = await ajax(api.td_get_task, { tt_id: _ID, _id: _id });
+	if (!res.ok) {
+		console.log("Bad response");
+		return;
+	}
+	return res;
+};

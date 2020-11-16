@@ -1,4 +1,4 @@
-import { SET_NAME, SET_EMAIL } from "../actions/resultActions";
+import { LOGIN } from "../actions/resultActions";
 
 const initialState = {
 	name: undefined,
@@ -14,10 +14,12 @@ const initialState = {
 
 function resultStorage(state = initialState, action) {
 	switch (action.type) {
-		case SET_NAME:
-			return { ...state, name: action.payload };
-		case SET_EMAIL:
-			return { ...state, email: action.payload };
+		case LOGIN:
+			return {
+				...state,
+				name: action.payload.name,
+				email: action.payload.email,
+			};
 		default:
 			return state;
 	}
