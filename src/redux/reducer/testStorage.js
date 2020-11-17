@@ -6,6 +6,7 @@ import {
 
 const initialState = {
 	taskList: [],
+	// currentTaskId: "5f720a047e5e6f4b670dfb5a",
 	currentTaskId: undefined,
 	currentTask: undefined,
 };

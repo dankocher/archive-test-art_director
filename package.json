@@ -15,6 +15,8 @@
     "react-scripts": "3.4.3",
     "react-zoom-pan-pinch": "^1.6.1",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
     "uid": "^2.0.0"
   },
   "scripts": {

@@ -5,18 +5,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./redux/reducer/rootReducer";
 
-const store = createStore(
-	rootReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { PersistGate } from "redux-persist/integration/react";
+import factory from "./helpers/persist/configureStore";
+
+const { store, persistor } = factory();
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<PersistGate loading={null} persistor={persistor}>
+				<App />
+			</PersistGate>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
