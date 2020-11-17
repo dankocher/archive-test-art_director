@@ -1,13 +1,14 @@
+import "./PhotoModal.css";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import "./PhotoModal.css";
+import { setIsHiddenPhotoModal } from "../../redux/actions/caruselActions";
 
-import { setIsHiddenPhotoModal } from "../../actions";
-
-import Arrow from "../Carousel/Arrow/Arrow";
-import ZoomController from "./ZoomController/ZoomController";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
+import Arrow from "../SplitPage/MainContainer/Carousel/Arrow/Arrow";
+import ZoomController from "./ZoomController/ZoomController";
+import closeIcon from "../../helpers/icons/close-icon";
 
 const MAX_ZOOM = 1.75;
 const ZOOM_STEP = 0.25;
@@ -35,7 +36,7 @@ function PhotoModal({ isHidden = true, currentImgUrl }) {
 								onClick={(event) => handlerCloseButton(event, resetTransform)}
 								className="hidden-button close-button--photoModal"
 							>
-								<i className="closeIcon"></i>
+								<i>{closeIcon}</i>
 							</button>
 						</div>
 

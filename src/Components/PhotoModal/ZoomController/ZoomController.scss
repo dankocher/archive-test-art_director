@@ -1,0 +1,25 @@
+$activeColor: #ffffff;
+
+.zoom-controller-button {
+	height: 4.4rem;
+	width: 4.4rem;
+
+	&:hover {
+		background-color: #484848;
+	}
+
+	i {
+		margin: auto;
+		height: 2.4rem;
+		width: 2.4rem;
+	}
+}
+
+.activeColor {
+	path {
+		fill: $activeColor;
+	}
+	rect {
+		fill: $activeColor;
+	}
+}

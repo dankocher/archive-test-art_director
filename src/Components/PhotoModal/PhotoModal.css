@@ -58,11 +58,6 @@
 	right: 4.8rem;
 }
 
-.closeIcon {
-	margin: auto;
-	content: url(../../utils/img/close-icon.png);
-}
-
 .close-button--photoModal {
 	position: absolute;
 	display: flex;
