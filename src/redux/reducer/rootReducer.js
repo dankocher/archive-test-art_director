@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import caruselReducer from "./caruselReducer";
 import testStorage from "./testStorage";
 import resultStorage from "./resultStorage";
+import rehydrateStorage from "./rehydrate";
 
 const persistConfig = {
 	key: "root",
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
 	resultStorage,
 	testStorage: persistReducer(testStoragePersistConfig, testStorage),
 	caruselReducer,
+	rehydrateStorage,
 });
 
 export default persistReducer(persistConfig, rootReducer);

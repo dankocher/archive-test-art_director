@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { persistStore } from "redux-persist";
 import persistedReducer from "../../redux/reducer/rootReducer";
+import { setIsRehydrate } from "../../redux/actions/rehydrateActions";
 
 // export { store, persistor };
 
@@ -15,6 +16,8 @@ export default () => {
 		)
 	);
 
-	const persistor = persistStore(store);
+	const persistor = persistStore(store, null, () => {
+		store.dispatch(setIsRehydrate());
+	});
 	return { store, persistor };
 };

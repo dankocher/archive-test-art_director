@@ -32,7 +32,7 @@ const getPage = (taskType) => {
 		// case WORDS_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<WordList />} />;
 		default:
-			return <Authorization />;
+			break;
 	}
 };
 
@@ -57,7 +57,7 @@ function Loader() {
 		});
 	}, [currentTaskId]);
 
-	return <>{getPage(taskType)}</>;
+	return <>{currentTaskId ? getPage(taskType) : <Authorization />}</>;
 }
 
 export default Loader;
