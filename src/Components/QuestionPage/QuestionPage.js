@@ -1,12 +1,11 @@
 import React from "react";
-import "./QuestionPage.css";
+import styles from "./QuestionPage.module.scss";
 
 import Timer from "../Timer/Timer";
 import TaskInformation from "../TaskInformation/TaskInformation";
-import QuestionContainer from "./QuestionContainer/QuestionContainer";
 import Button from "../Button/Button";
 import QATask from "./QATask/QATask";
-import SituationTask from "./SituationTask/SituationTask";
+// import SituationTask from "./SituationTask/SituationTask";
 
 const exportText = {
 	time: "05:15",
@@ -23,35 +22,25 @@ const exportText = {
 
 function QuestionPage(props) {
 	return (
-		<div className="grid--QuestionPage">
-			<div className="header-QuestionPage">
+		<>
+			<div className={styles.header}>
 				<Timer time={exportText.time} />
 				<TaskInformation />
 			</div>
-			<div className="wrapper-centredContent--QuestionPage">
-				<div className="wrapper-widthContent--QuestionPage">
-					<h2 className="heading--QuestionPage">{exportText.headingText}</h2>
-					<div className="body-QuestionPage">
-						<QuestionContainer
-							error={false}
-							taskType={
-								<QATask
-									task={exportText.taskQA}
-									description={exportText.descriptionQA}
-								/>
-								// <SituationTask
-								// 	givenTask={exportText.givenTask}
-								// 	descriptionTask={exportText.descriptionTask}
-								// />
-							}
+			<div className={styles.centredWrapper}>
+				<div className={styles.centredWrapper__container}>
+					<h2>{exportText.headingText}</h2>
+					<div className={styles.centredWrapper__container__body}>
+						<QATask
+							task={exportText.taskQA}
+							description={exportText.descriptionQA}
 						/>
 					</div>
-					<div className="footer-QuestionPage">
-						<Button color="white" label="Продолжить" />
-					</div>
+
+					<Button color="white" label="Продолжить" />
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
