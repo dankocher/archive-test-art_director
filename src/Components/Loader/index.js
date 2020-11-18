@@ -11,6 +11,7 @@ import {
 
 import Authorization from "../Authorization/Authorization";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
+import QuestionPage from "../QuestionPage/QuestionPage";
 
 import { setTaskList, setCurrentTask } from "../../redux/actions/testActions";
 
@@ -23,12 +24,13 @@ const getPage = (taskType) => {
 	switch (taskType) {
 		case WELCOME_SCREEN:
 			return <WelcomeScreen />;
+		case QUSETION_ANSWER:
+			return <QuestionPage />;
 		// case ILLUSTRATION_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<Illustrations />} />;
 		// case ILLUSTRATIONS_ANSWERS:
 		// 	return <Illustrations />;
-		// case QUSETION_ANSWER:
-		// 	return <QAList />;
+
 		// case WORDS_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<WordList />} />;
 		default:

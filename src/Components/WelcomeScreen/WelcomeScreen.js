@@ -1,8 +1,9 @@
 import styles from "./WelcomeScreen.module.scss";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getImgPath } from "../../helpers/getImgPath";
+import setNextTaskId from "../../thunks/setNextTaskId";
 
 import staticText from "../../utils/labelText/lable.json";
 
@@ -11,6 +12,8 @@ import Button from "../Button/Button";
 const classNames = require("classnames");
 
 function WelcomeScreen() {
+	const dispatch = useDispatch();
+
 	const img = useSelector(
 		(state) => state.testStorage.currentTask?.data.imgUrl
 	);
@@ -19,7 +22,6 @@ function WelcomeScreen() {
 	const description = useSelector(
 		(state) => state.testStorage.currentTask?.description
 	);
-	// const img = "qwe";
 
 	const contentContainer = classNames(styles.contentContainer, {
 		[styles.containerOneContent]: img == null || img === "",
@@ -29,6 +31,10 @@ function WelcomeScreen() {
 		[styles.oneContentArea]: img == null || img === "",
 	});
 
+	const nextTaskHandler = () => {
+		dispatch(setNextTaskId());
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={contentContainer}>
@@ -36,7 +42,10 @@ function WelcomeScreen() {
 					<h1>{header}</h1>
 					<p>{description}</p>
 
-					<Button label={staticText.buttonLabelNext} />
+					<Button
+						label={staticText.buttonLabelNext}
+						onClick={nextTaskHandler}
+					/>
 				</div>
 				{img != null ? (
 					<div className={styles.contentContainer__imgContainer}>

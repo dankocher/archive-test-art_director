@@ -19,3 +19,5 @@ const setNextTaskId = () => {
 		dispatch(setCurrentTaskId(taskList[nextIndex]));
 	};
 };
+
+export default setNextTaskId;

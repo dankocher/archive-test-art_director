@@ -35,14 +35,14 @@ function QuestionPage(props) {
 						<QuestionContainer
 							error={false}
 							taskType={
-								// <QATask
-								// 	task={exportText.taskQA}
-								// 	description={exportText.descriptionQA}
-								// />
-								<SituationTask
-									givenTask={exportText.givenTask}
-									descriptionTask={exportText.descriptionTask}
+								<QATask
+									task={exportText.taskQA}
+									description={exportText.descriptionQA}
 								/>
+								// <SituationTask
+								// 	givenTask={exportText.givenTask}
+								// 	descriptionTask={exportText.descriptionTask}
+								// />
 							}
 						/>
 					</div>
