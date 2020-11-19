@@ -1,7 +1,7 @@
 import styles from "./QATask.module.scss";
 import React from "react";
 
-import TextField from "../../TextField/TextField";
+import TextArea from "../../TextArea/TextArea";
 
 const classNames = require("classnames");
 
@@ -15,7 +15,7 @@ function QATask(props) {
 			<p className={styles.container__question}>{props.task}</p>
 			<p className={styles.container__description}>{props.description}</p>
 
-			<TextField />
+			<TextArea placeholder={"Текст..."} />
 		</div>
 	);
 }
