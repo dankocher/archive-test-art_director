@@ -16,6 +16,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+textarea {
+	font-family: "Golos Text";
+}
+
 body * {
 	margin: 0;
 	padding: 0;

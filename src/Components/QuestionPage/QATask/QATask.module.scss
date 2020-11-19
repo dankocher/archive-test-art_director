@@ -13,7 +13,7 @@
 		margin-bottom: 0.8rem;
 	}
 
-	& > :last-child {
+	& > :nth-last-child(2) {
 		margin-top: 2.8rem;
 	}
 
@@ -24,6 +24,26 @@
 
 	&__description {
 		color: $neutral-4;
+	}
+}
+
+.errorWrapper {
+	height: 0;
+	position: relative;
+
+	&__errorMessage {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		top: 0.5rem;
+
+		span {
+			padding-left: 0.4rem;
+			height: 2.1rem;
+			font-size: 14px;
+			line-height: 19px;
+			color: #ff4a4a;
+		}
 	}
 }
 

@@ -3,20 +3,34 @@ import React from "react";
 
 import TextArea from "../../TextArea/TextArea";
 
+import errorIcon from "../../../helpers/icons/error-icon";
+
 const classNames = require("classnames");
 
 function QATask(props) {
+	const { data, responseLimitation } = props;
+	const { question, description, id } = data;
+
 	const container = classNames(styles.container, {
 		[styles.error]: !true,
 	});
 
 	return (
-		<div className={container}>
-			<p className={styles.container__question}>{props.task}</p>
-			<p className={styles.container__description}>{props.description}</p>
+		<>
+			<div className={container}>
+				<p className={styles.container__question}>{question}</p>
+				<p className={styles.container__description}>{description}</p>
 
-			<TextArea placeholder={"Текст..."} />
-		</div>
+				<TextArea maxLength={responseLimitation.to} placeholder={"Текст..."} />
+
+				<div className={styles.errorWrapper}>
+					<div className={styles.errorWrapper__errorMessage}>
+						<i>{errorIcon}</i>
+						<span>Invalid mail</span>
+					</div>
+				</div>
+			</div>
+		</>
 	);
 }
 

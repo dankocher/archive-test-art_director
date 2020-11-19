@@ -43,7 +43,9 @@ function TextArea(props) {
 	return (
 		<div
 			style={{
-				minHeight: parentHeight,
+				minHeight: "2.6rem",
+				display: "flex",
+				alignItems: "flex-end",
 			}}
 		>
 			<textarea

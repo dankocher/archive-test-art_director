@@ -47,14 +47,14 @@ function Loader() {
 		// if (currentTaskId != null) return;
 		getTaskIdListFromServer().then((res) => {
 			dispatch(setTaskList(res.tasks));
-			console.log(res);
+			// console.log(res);
 		});
 	}, []);
 
 	useEffect(() => {
 		if (currentTaskId == null) return;
 		getTaskFromServer(currentTaskId).then((res) => {
-			console.log(res.task);
+			// console.log(res.task);
 			dispatch(setCurrentTask(res.task));
 		});
 	}, [currentTaskId]);

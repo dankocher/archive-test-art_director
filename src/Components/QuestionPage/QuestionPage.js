@@ -5,22 +5,22 @@ import Timer from "../Timer/Timer";
 import TaskInformation from "../TaskInformation/TaskInformation";
 import Button from "../Button/Button";
 import QATask from "./QATask/QATask";
+import { useSelector } from "react-redux";
 // import SituationTask from "./SituationTask/SituationTask";
 
 const exportText = {
 	time: "05:15",
-	taskQA:
-		"Напишите в каких узких, специфических или актуальных сейчас темах и сферах вы хорошо  разбираетесь.",
-	descriptionQA:
-		"Напишите в свободной форме, можно привести ссылки примеров на каждый вид.",
-	headingText: "Ответьте на вопросы",
-	givenTask:
-		"Есть студия с одним Арт-Директором Катей и двумя иллюстраторами Леной и Настей.Каждый день иллюстраторы сдают по одной работе для проверки, но иногда по две, а иногда, если работа большая, то одну работу за три дня. Катя проверяет эти работы и если нужны правки, то отправляет их на доработку. После того как работы приняты, они могут пролежать на общем сервере несколько месяцев перед тем как будут отправлены на загрузку на стоки.",
-	descriptionTask:
-		"Необходимо придумать файловую структуру сервера (названия папок и их вложений) и описать куда попадает новый файл с иллюстрацией в момент его создания, проверки и внесения правок, загрузки на стоки и последующего хранения.",
 };
 
-function QuestionPage(props) {
+const FROM = 0;
+const TO = 2000;
+
+function QuestionPage() {
+	const task = useSelector((state) => state.testStorage.currentTask);
+	const isAnswerSizeLimited = task.data.isAnswerSizeLimited;
+	const QAList = task.data.questionAnswerList;
+	const responseLimitation = task.data.responseLimitation;
+
 	return (
 		<>
 			<div className={styles.header}>
@@ -31,18 +31,28 @@ function QuestionPage(props) {
 				<div className={styles.centredWrapper__container}>
 					<h2>{exportText.headingText}</h2>
 					<div className={styles.centredWrapper__container__body}>
-						<QATask
+						{QAList.map((element, key) => {
+							return (
+								<QATask
+									key={key}
+									data={element}
+									responseLimitation={
+										isAnswerSizeLimited
+											? responseLimitation
+											: { from: FROM, to: TO }
+									}
+								/>
+							);
+						})}
+
+						{/* <QATask
 							task={exportText.taskQA}
 							description={exportText.descriptionQA}
 						/>
 						<QATask
 							task={exportText.taskQA}
 							description={exportText.descriptionQA}
-						/>
-						<QATask
-							task={exportText.taskQA}
-							description={exportText.descriptionQA}
-						/>
+						/> */}
 					</div>
 
 					<Button color="white" label="Продолжить" />

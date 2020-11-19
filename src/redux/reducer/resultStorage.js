@@ -7,7 +7,7 @@ const initialState = {
 	results: [
 		{
 			task_id: undefined,
-			data: {},
+			data: [{}],
 		},
 	],
 };
