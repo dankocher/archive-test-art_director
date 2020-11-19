@@ -35,6 +35,14 @@ function QuestionPage(props) {
 							task={exportText.taskQA}
 							description={exportText.descriptionQA}
 						/>
+						<QATask
+							task={exportText.taskQA}
+							description={exportText.descriptionQA}
+						/>
+						<QATask
+							task={exportText.taskQA}
+							description={exportText.descriptionQA}
+						/>
 					</div>
 
 					<Button color="white" label="Продолжить" />
