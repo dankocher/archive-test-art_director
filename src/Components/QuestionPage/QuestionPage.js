@@ -1,25 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./QuestionPage.module.scss";
 
 import Timer from "../Timer/Timer";
 import TaskInformation from "../TaskInformation/TaskInformation";
 import Button from "../Button/Button";
 import QATask from "./QATask/QATask";
-import { useSelector } from "react-redux";
-// import SituationTask from "./SituationTask/SituationTask";
+import { useDispatch, useSelector } from "react-redux";
+
+import { startTask } from "../../redux/actions/resultActions";
 
 const exportText = {
 	time: "05:15",
 };
 
-const FROM = 0;
+const FROM = 1;
 const TO = 2000;
 
 function QuestionPage() {
+	const dispatch = useDispatch();
+
 	const task = useSelector((state) => state.testStorage.currentTask);
+	const taskId = task._id;
 	const isAnswerSizeLimited = task.data.isAnswerSizeLimited;
 	const QAList = task.data.questionAnswerList;
 	const responseLimitation = task.data.responseLimitation;
+
+	const resultsId = useSelector((state) =>
+		state.resultStorage.results.findIndex(
+			(element) => element.task_id === taskId
+		)
+	);
+
+	const isTaskStarted = () => {};
+
+	useEffect(() => {
+		const startDate = task.isTimeConsidered ? new Date().getTime() : undefined;
+		if (resultsId !== -1) return;
+		dispatch(startTask(taskId, startDate));
+	}, []);
 
 	return (
 		<>

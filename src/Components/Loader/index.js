@@ -13,7 +13,11 @@ import Authorization from "../Authorization/Authorization";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import QuestionPage from "../QuestionPage/QuestionPage";
 
-import { setTaskList, setCurrentTask } from "../../redux/actions/testActions";
+import {
+	setTaskList,
+	setCurrentTask,
+	setCurrentTestId,
+} from "../../redux/actions/testActions";
 
 import {
 	getTaskIdListFromServer,
@@ -47,6 +51,7 @@ function Loader() {
 		// if (currentTaskId != null) return;
 		getTaskIdListFromServer().then((res) => {
 			dispatch(setTaskList(res.tasks));
+			dispatch(setCurrentTestId(res.ttask._id));
 			// console.log(res);
 		});
 	}, []);

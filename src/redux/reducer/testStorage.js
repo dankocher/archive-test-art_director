@@ -1,5 +1,6 @@
 import {
 	SET_TASK_LIST,
+	SET_CURRENT_TEST_ID,
 	SET_CURRENT_TASK_ID,
 	SET_CURRENT_TASK,
 } from "../actions/testActions";
@@ -13,6 +14,8 @@ const initialState = {
 
 function testStorage(state = initialState, action) {
 	switch (action.type) {
+		case SET_CURRENT_TEST_ID:
+			return { ...state, currentTestId: action.payload };
 		case SET_TASK_LIST:
 			return { ...state, taskList: action.payload };
 		case SET_CURRENT_TASK_ID:

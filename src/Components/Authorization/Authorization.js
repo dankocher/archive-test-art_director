@@ -21,6 +21,7 @@ function Authorization() {
 	const [isEmailValid, setIsEmailValid] = useState(true);
 
 	const taskList = useSelector((state) => state.testStorage.taskList);
+	const currentTestId = useSelector((state) => state.testStorage.currentTestId);
 
 	const startTestHandler = () => {
 		if (name === "") {
@@ -31,7 +32,7 @@ function Authorization() {
 			}
 			return;
 		} else if (!isEmailValid) return;
-		dispatch(login(name, email));
+		dispatch(login(name, email, currentTestId));
 		dispatch(setCurrentTaskId(taskList[0]));
 	};
 

@@ -1,15 +1,15 @@
 import { LOGIN } from "../actions/resultActions";
 
+const result = {
+	task_id: undefined,
+	data: [{}],
+};
+
 const initialState = {
 	name: undefined,
 	email: undefined,
 	test_id: undefined,
-	results: [
-		{
-			task_id: undefined,
-			data: [{}],
-		},
-	],
+	results: [],
 };
 
 function resultStorage(state = initialState, action) {
@@ -19,6 +19,7 @@ function resultStorage(state = initialState, action) {
 				...state,
 				name: action.payload.name,
 				email: action.payload.email,
+				test_id: action.payload.currentTestId,
 			};
 		default:
 			return state;
