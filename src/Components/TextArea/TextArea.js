@@ -7,8 +7,18 @@ import { isFunction } from "../../utils/validators/isFunction";
 const classNames = require("classnames");
 
 function TextArea(props) {
+	const {
+		rows,
+		defaultValue,
+		text,
+		setText,
+		defaultHeight,
+		error,
+		...args
+	} = props;
+
 	const textAreaRef = useRef(null);
-	const [text, setText] = useState("");
+	// const [text, setText] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
 	const [parentHeight, setParentHeight] = useState("auto");
 
@@ -18,8 +28,8 @@ function TextArea(props) {
 		: () => console.log("Is not a function");
 
 	useEffect(() => {
-		setText(props.value);
-	}, [props.value]);
+		setText(defaultValue);
+	}, [defaultValue]);
 
 	useEffect(() => {
 		setParentHeight(`${textAreaRef.current.scrollHeight}px`);
@@ -37,21 +47,21 @@ function TextArea(props) {
 	};
 
 	const defaultStyles = classNames(styles.textField, {
-		[styles.error]: props.error,
+		[styles.error]: error,
 	});
 
 	return (
 		<div
 			style={{
-				minHeight: "2.6rem",
+				minHeight: defaultHeight || parentHeight,
 				display: "flex",
 				alignItems: "flex-end",
 			}}
 		>
 			<textarea
-				{...props}
+				{...args}
 				ref={textAreaRef}
-				rows={props.rows ? props.rows : 1}
+				rows={rows ? rows : 1}
 				style={{
 					height: textAreaHeight,
 					overflow: "hidden",

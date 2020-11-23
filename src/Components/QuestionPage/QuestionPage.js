@@ -8,6 +8,8 @@ import QATask from "./QATask/QATask";
 import { useDispatch, useSelector } from "react-redux";
 
 import { startTask } from "../../redux/actions/resultActions";
+import { setIsNextBtnClicked } from "../../redux/actions/testActions";
+import { useState } from "react";
 
 const exportText = {
 	time: "05:15",
@@ -19,25 +21,46 @@ const TO = 2000;
 function QuestionPage() {
 	const dispatch = useDispatch();
 
+	const [localResponseLimitation, setLocalResponseLimitation] = useState({
+		from: FROM,
+		to: TO,
+	});
+
 	const task = useSelector((state) => state.testStorage.currentTask);
 	const taskId = task._id;
 	const isAnswerSizeLimited = task.data.isAnswerSizeLimited;
 	const QAList = task.data.questionAnswerList;
 	const responseLimitation = task.data.responseLimitation;
 
-	const resultsId = useSelector((state) =>
-		state.resultStorage.results.findIndex(
-			(element) => element.task_id === taskId
-		)
+	const resultIndex = useSelector((state) => {
+		const results = state.resultStorage.results;
+		if (results == null || results.length === 0) return -1;
+		return results.findIndex((element) => element.task_id === taskId);
+	});
+
+	const results = useSelector(
+		(state) => state.resultStorage.results[resultIndex]?.data
 	);
 
-	const isTaskStarted = () => {};
-
 	useEffect(() => {
+		if (resultIndex !== -1) return;
+
 		const startDate = task.isTimeConsidered ? new Date().getTime() : undefined;
-		if (resultsId !== -1) return;
-		dispatch(startTask(taskId, startDate));
+		dispatch(startTask(taskId, startDate, QAList));
+
+		if (!isAnswerSizeLimited) return;
+		setLocalResponseLimitation(responseLimitation);
 	}, []);
+
+	const toNextTask = () => {
+		console.log("asdad");
+		dispatch(setIsNextBtnClicked(true));
+		for (const result of results) {
+			if (result.answer == null) return;
+			if (result.answer.length < localResponseLimitation.from)
+				return console.log("qwe");
+		}
+	};
 
 	return (
 		<>
@@ -53,27 +76,16 @@ function QuestionPage() {
 							return (
 								<QATask
 									key={key}
+									index={key}
 									data={element}
-									responseLimitation={
-										isAnswerSizeLimited
-											? responseLimitation
-											: { from: FROM, to: TO }
-									}
+									resultIndex={resultIndex}
+									responseLimitation={localResponseLimitation}
 								/>
 							);
 						})}
-
-						{/* <QATask
-							task={exportText.taskQA}
-							description={exportText.descriptionQA}
-						/>
-						<QATask
-							task={exportText.taskQA}
-							description={exportText.descriptionQA}
-						/> */}
 					</div>
 
-					<Button color="white" label="Продолжить" />
+					<Button color="white" label="Продолжить" onClick={toNextTask} />
 				</div>
 			</div>
 		</>

@@ -13,8 +13,8 @@
 		margin-bottom: 0.8rem;
 	}
 
-	& > :nth-last-child(2) {
-		margin-top: 2.8rem;
+	& > :nth-child(2) {
+		margin-bottom: 2.8rem;
 	}
 
 	&__question {
@@ -46,12 +46,11 @@
 			height: 2.1rem;
 			font-size: 14px;
 			line-height: 19px;
-			text-align: center;
 			color: $red;
 		}
 	}
 }
 
 .error {
-	border: 0.15rem solid $red;
+	border-color: $red;
 }

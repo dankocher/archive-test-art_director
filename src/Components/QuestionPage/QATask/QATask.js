@@ -1,18 +1,46 @@
 import styles from "./QATask.module.scss";
-import React from "react";
+import React, { useState } from "react";
 
 import TextArea from "../../TextArea/TextArea";
 
 import errorIcon from "../../../helpers/icons/error-icon";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setAnswerOfQA } from "../../../redux/actions/resultActions";
 
 const classNames = require("classnames");
 
 function QATask(props) {
-	const { data, responseLimitation } = props;
+	const dispatch = useDispatch();
+
+	const { data, responseLimitation, index, resultIndex } = props;
 	const { question, description, id } = data;
 
+	const [localAnswer, setLocalAnswer] = useState("");
+
+	const isNextBtnClicked = useSelector(
+		(state) => state.testStorage.isNextBtnClicked
+	);
+
+	const answer = useSelector(
+		(state) => state.resultStorage.results[resultIndex]?.data[index].answer
+	);
+
+	const saveAnswer = (localAnswer) => {
+		if (answer === localAnswer) return;
+		dispatch(setAnswerOfQA(localAnswer, resultIndex, index));
+	};
+
+	const validationAnswer = () => {
+		if (!isNextBtnClicked) return true;
+
+		if (localAnswer == null) return false;
+		if (localAnswer.length < responseLimitation.from) return false;
+		return true;
+	};
+
 	const container = classNames(styles.container, {
-		[styles.error]: !true,
+		[styles.error]: !validationAnswer(),
 	});
 
 	return (
@@ -21,14 +49,24 @@ function QATask(props) {
 				<p className={styles.container__question}>{question}</p>
 				<p className={styles.container__description}>{description}</p>
 
-				<TextArea maxLength={responseLimitation.to} placeholder={"Текст..."} />
-
-				<div className={styles.errorWrapper}>
-					<div className={styles.errorWrapper__errorMessage}>
-						<i>{errorIcon}</i>
-						<span>Invalid mail</span>
+				<TextArea
+					defaultValue={answer}
+					text={localAnswer}
+					setText={setLocalAnswer}
+					onBlur={saveAnswer}
+					maxLength={responseLimitation.to}
+					defaultHeight={"2.6rem"}
+					placeholder={"Текст..."}
+					error={!validationAnswer()}
+				/>
+				{!validationAnswer() ? (
+					<div className={styles.errorWrapper}>
+						<div className={styles.errorWrapper__errorMessage}>
+							<i>{errorIcon}</i>
+							<span>{`Минимальное кол-во символов ${responseLimitation.from}`}</span>
+						</div>
 					</div>
-				</div>
+				) : null}
 			</div>
 		</>
 	);
