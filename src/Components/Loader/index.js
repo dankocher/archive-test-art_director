@@ -12,6 +12,7 @@ import {
 import Authorization from "../Authorization/Authorization";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import QuestionPage from "../QuestionPage/QuestionPage";
+import SplitScreen from "../SplitScreen/SplitScreen";
 
 import {
 	setTaskList,
@@ -30,13 +31,12 @@ const getPage = (taskType) => {
 			return <WelcomeScreen />;
 		case QUSETION_ANSWER:
 			return <QuestionPage />;
+		case WORDS_RADIO_BUTTONS:
+			return <SplitScreen />;
 		// case ILLUSTRATION_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<Illustrations />} />;
 		// case ILLUSTRATIONS_ANSWERS:
 		// 	return <Illustrations />;
-
-		// case WORDS_RADIO_BUTTONS:
-		// 	return <SplitScreen rightSide={<WordList />} />;
 		default:
 			break;
 	}

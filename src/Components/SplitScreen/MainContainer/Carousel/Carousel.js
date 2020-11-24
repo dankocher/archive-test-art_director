@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Carousel.css";
 
-import { setImageLength, setIsHiddenPhotoModal } from "../../../../redux/actions/caruselActions";
+import {
+	setImageLength,
+	setIsHiddenPhotoModal,
+} from "../../../../redux/actions/caruselActions";
 import imgList from "../../../../utils/imgList";
 
 import Arrow from "./Arrow/Arrow";
@@ -13,8 +16,13 @@ function Carousel() {
 	const [imageList, setImageList] = useState([]);
 	const [hoveredImage, setHoveredImage] = useState(true);
 	const dispatch = useDispatch();
-	const currentImageIndex = useSelector((state) => state.current);
-	const isHiddenPhotoModal = useSelector((state) => state.isHiddenPhotoModal);
+	const currentImageIndex = useSelector(
+		(state) => state.caruselReducer.current
+	);
+	const isHiddenPhotoModal = useSelector(
+		(state) => state.caruselReducer.isHiddenPhotoModal
+	);
+
 	const currentImgUrl =
 		imageList === undefined || imageList.length === 0
 			? require("../../../../utils/img/noImgBig.png")
@@ -68,11 +76,7 @@ function Carousel() {
 			>
 				{isOneImg() ? null : (
 					<div className="leftArrow-position--carousel centred-carouselArrow">
-						<Arrow
-							isHidden={hoveredImage}
-							isToLeft={true}
-							isDark={false}
-						/>
+						<Arrow isHidden={hoveredImage} isToLeft={true} isDark={false} />
 					</div>
 				)}
 				<img

@@ -13,9 +13,9 @@ const classNames = require("classnames");
 function QATask(props) {
 	const dispatch = useDispatch();
 
-	const { data, responseLimitation, index, resultIndex } = props;
+	const { data, responseLimitation, index, resultIndex, itemsRef } = props;
 	const { question, description, id } = data;
-
+	// console.log(itemsRef);
 	const [localAnswer, setLocalAnswer] = useState("");
 
 	const isNextBtnClicked = useSelector(
@@ -44,31 +44,29 @@ function QATask(props) {
 	});
 
 	return (
-		<>
-			<div className={container}>
-				<p className={styles.container__question}>{question}</p>
-				<p className={styles.container__description}>{description}</p>
+		<div ref={(el) => (itemsRef.current[index] = el)} className={container}>
+			<p className={styles.container__question}>{question}</p>
+			<p className={styles.container__description}>{description}</p>
 
-				<TextArea
-					defaultValue={answer}
-					text={localAnswer}
-					setText={setLocalAnswer}
-					onBlur={saveAnswer}
-					maxLength={responseLimitation.to}
-					defaultHeight={"2.6rem"}
-					placeholder={"Текст..."}
-					error={!validationAnswer()}
-				/>
-				{!validationAnswer() ? (
-					<div className={styles.errorWrapper}>
-						<div className={styles.errorWrapper__errorMessage}>
-							<i>{errorIcon}</i>
-							<span>{`Минимальное кол-во символов ${responseLimitation.from}`}</span>
-						</div>
+			<TextArea
+				defaultValue={answer}
+				text={localAnswer}
+				setText={setLocalAnswer}
+				onBlur={saveAnswer}
+				maxLength={responseLimitation.to}
+				defaultHeight={"2.6rem"}
+				placeholder={"Текст..."}
+				error={!validationAnswer()}
+			/>
+			{!validationAnswer() ? (
+				<div className={styles.errorWrapper}>
+					<div className={styles.errorWrapper__errorMessage}>
+						<i>{errorIcon}</i>
+						<span>{`Минимальное кол-во символов ${responseLimitation.from}`}</span>
 					</div>
-				) : null}
-			</div>
-		</>
+				</div>
+			) : null}
+		</div>
 	);
 }
 

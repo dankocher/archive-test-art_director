@@ -18,6 +18,7 @@ function TextArea(props) {
 	} = props;
 
 	const textAreaRef = useRef(null);
+	// console.log(textAreaRef);
 	// const [text, setText] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
 	const [parentHeight, setParentHeight] = useState("auto");
