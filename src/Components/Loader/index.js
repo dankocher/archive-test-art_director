@@ -12,8 +12,13 @@ import {
 import Authorization from "../Authorization/Authorization";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import QuestionPage from "../QuestionPage/QuestionPage";
+import SplitScreen from "../SplitScreen/SplitScreen";
 
-import { setTaskList, setCurrentTask } from "../../redux/actions/testActions";
+import {
+	setTaskList,
+	setCurrentTask,
+	setCurrentTestId,
+} from "../../redux/actions/testActions";
 
 import {
 	getTaskIdListFromServer,
@@ -26,13 +31,12 @@ const getPage = (taskType) => {
 			return <WelcomeScreen />;
 		case QUSETION_ANSWER:
 			return <QuestionPage />;
+		case WORDS_RADIO_BUTTONS:
+			return <SplitScreen />;
 		// case ILLUSTRATION_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<Illustrations />} />;
 		// case ILLUSTRATIONS_ANSWERS:
 		// 	return <Illustrations />;
-
-		// case WORDS_RADIO_BUTTONS:
-		// 	return <SplitScreen rightSide={<WordList />} />;
 		default:
 			break;
 	}
@@ -47,14 +51,15 @@ function Loader() {
 		// if (currentTaskId != null) return;
 		getTaskIdListFromServer().then((res) => {
 			dispatch(setTaskList(res.tasks));
-			console.log(res);
+			dispatch(setCurrentTestId(res.ttask._id));
+			// console.log(res);
 		});
 	}, []);
 
 	useEffect(() => {
 		if (currentTaskId == null) return;
 		getTaskFromServer(currentTaskId).then((res) => {
-			console.log(res.task);
+			// console.log(res.task);
 			dispatch(setCurrentTask(res.task));
 		});
 	}, [currentTaskId]);

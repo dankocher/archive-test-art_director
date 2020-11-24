@@ -6,15 +6,15 @@ import MainContainer from "./MainContainer/MainContainer";
 import SideContainer from "./SideContainer/SideContainer";
 import SideContainerTask from "./SideContainer/SideContainerTask/SideContainerTask";
 import RadioButtonAnswers from "./SideContainer/RadioButtonAnswers/RadioButtonAnswers";
-import TextField from "../TextField/TextField";
+// import TextField from "../TextField/TextField";
 import BigTextMainContainer from "./MainContainer/BigText/BigText";
 import Carousel from "./MainContainer/Carousel/Carousel";
 
-function SplitPage() {
+function SplitScreen() {
 	return (
 		<div className="grid-container--SplitPage">
 			<div>
-				<MainContainer mainContainerBody={<Carousel />} />
+				<MainContainer mainContainerBody={<BigTextMainContainer />} />
 			</div>
 			<div className="shadowing-rightContainer--SplitPage">
 				<SideContainer answerType={<RadioButtonAnswers color="red" />} />
@@ -26,4 +26,4 @@ function SplitPage() {
 	);
 }
 
-export default SplitPage;
+export default SplitScreen;

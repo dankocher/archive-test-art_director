@@ -6,7 +6,7 @@ import { setIsHiddenPhotoModal } from "../../redux/actions/caruselActions";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-import Arrow from "../SplitPage/MainContainer/Carousel/Arrow/Arrow";
+import Arrow from "../SplitScreen/MainContainer/Carousel/Arrow/Arrow";
 import ZoomController from "./ZoomController/ZoomController";
 import closeIcon from "../../helpers/icons/close-icon";
 
