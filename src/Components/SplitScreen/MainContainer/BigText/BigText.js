@@ -1,12 +1,13 @@
+import styles from "./bigText.module.scss";
+
 import React from "react";
-import "./BigText.css";
 
 const exportText = "Майндфулнесс";
 
 function BigTextMainContainer(props) {
 	return (
-		<div>
-			<h1 className="bigText-splitPage">{exportText}</h1>
+		<div className={styles.container}>
+			<h1 className={styles.container__bigText}>{exportText}</h1>
 		</div>
 	);
 }
