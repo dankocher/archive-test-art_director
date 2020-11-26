@@ -7,6 +7,7 @@
 
 	button {
 		height: 4rem;
+		cursor: pointer;
 
 		i {
 			height: inherit;
@@ -14,7 +15,7 @@
 
 		&:hover {
 			path {
-				fill: red;
+				fill: $neutral-6;
 			}
 		}
 

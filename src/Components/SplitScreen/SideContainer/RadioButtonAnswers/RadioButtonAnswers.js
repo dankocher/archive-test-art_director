@@ -1,30 +1,55 @@
 import styles from "./RadioButtonAnswers.module.scss";
-
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { uid } from "uid";
+// import { uid } from "uid";
 
 import RadioButton from "../../../RadioButton/RadioButton";
-import { useSelector } from "react-redux";
 
-const exportText = {
-	answerTitleFirst: "Актуальность",
-	answerTitleSecond: "Качество",
-	answer: "Обе работы современны по стилистике",
-};
+import { setAnswerOfWordsRadioButtons } from "../../../../redux/actions/resultActions";
+import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
 
 function RadioButtonAnswers(props) {
 	const { index, radioButtonTask } = props;
 
-	const [checkedValue, setCheckedValue] = useState("");
+	const dispatch = useDispatch();
 
-	const chooseColor = () => {
-		return props.color === "red" ? "#EB5757" : "#323232";
-	};
+	// const [checkedValue, setCheckedValue] = useState("");
+
+	const resultIndex = useGetResultIndex();
+	const currentSubTaskIndex = useSelector(
+		(state) => state.testStorage.currentSubTaskIndex
+	);
+	const checkedValue = useSelector(
+		(state) =>
+			state.resultStorage.results[resultIndex]?.data[currentSubTaskIndex]
+				.answers[index].optionId
+	);
+
+	const isNextBtnClicked = useSelector(
+		(state) => state.testStorage.isNextBtnClicked
+	);
 
 	const chooseOption = (event) => {
-		const value = event.target.value;
-		setCheckedValue(value);
+		const value = parseInt(event.target.value);
+		dispatch(
+			setAnswerOfWordsRadioButtons(
+				value,
+				resultIndex,
+				currentSubTaskIndex,
+				index
+			)
+		);
+	};
+
+	const isValid = () => {
+		if (!isNextBtnClicked) return true;
+		if (checkedValue != null) return true;
+		return false;
+	};
+
+	const chooseColor = () => {
+		return isValid() ? "#323232" : "#EB5757";
 	};
 
 	return (
@@ -43,7 +68,7 @@ function RadioButtonAnswers(props) {
 							value={`${element.id}`}
 							label={element.option}
 							onChange={chooseOption}
-							checkedValue={checkedValue}
+							checkedValue={`${checkedValue}`}
 						/>
 					);
 				})}

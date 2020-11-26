@@ -1,18 +1,24 @@
 import styles from "./pagination.module.scss";
 import React from "react";
-
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
 import subTaskArrow from "../../../../helpers/icons/subTask-arrow";
 
+import setNextSubTaskThunk from "../../../../thunks/setNextSubTaskThunk";
+import setPreveusSubTaskThunk from "../../../../thunks/setPreveusSubTaskThunk";
+
 function Pagination() {
+	const dispatch = useDispatch();
 	const currentSubTaskIndex = useSelector(
 		(state) => state.testStorage.currentSubTaskIndex
 	);
 	const maxOpenedSubTaskIndex = useSelector(
 		(state) => state.testStorage.maxOpenedSubTaskIndex
 	);
+
+	const currentResultIndex = useGetResultIndex();
 	const subTaskLength = useSelector(
-		(state) => state.testStorage.currentTask.data.wordList.length
+		(state) => state.resultStorage.results[currentResultIndex]?.data.length
 	);
 
 	const getIsDisabledLefftArrow = () => {
@@ -26,12 +32,21 @@ function Pagination() {
 		return false;
 	};
 
+	const setNextSubTask = () => {
+		dispatch(setNextSubTaskThunk());
+	};
+
+	const setPreveusSubTask = () => {
+		dispatch(setPreveusSubTaskThunk());
+	};
+
 	return (
 		<>
 			<div className={styles.container}>
 				<button
 					className={"hidden-button"}
 					disabled={getIsDisabledLefftArrow()}
+					onClick={setPreveusSubTask}
 				>
 					<i>{subTaskArrow}</i>
 				</button>
@@ -41,6 +56,7 @@ function Pagination() {
 				<button
 					className={"hidden-button"}
 					disabled={getIsDisabledRightArrow()}
+					onClick={setNextSubTask}
 				>
 					<i className={styles.container__rightArrow}>{subTaskArrow}</i>
 				</button>

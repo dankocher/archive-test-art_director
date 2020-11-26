@@ -20,14 +20,13 @@ function BigTextMainContainer(props) {
 
 	const word = task.data.wordList[currentSubTaskIndex]?.word;
 
-	const resultIndex = useGetResultIndex(taskId);
+	const resultIndex = useGetResultIndex();
 	useEffect(() => {
 		dispatch(
 			startTaskThunk(taskId, resultIndex, wordList, radioButtonTaskList)
 		);
 	}, []);
 
-	console.log(word);
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.container__bigText}>{word}</h1>

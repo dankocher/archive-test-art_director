@@ -1,16 +1,25 @@
 import styles from "./sideContainer.module.scss";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import nextButtonHadler from "../../../thunks/nextButtonHadler";
+import { useGetResultIndex } from "../../../helpers/customHooks/getResultIndex";
 
 import TaskInformation from "../../TaskInformation/TaskInformation";
 import Button from "../../Button/Button";
 import RadioButtonAnswers from "./RadioButtonAnswers/RadioButtonAnswers";
 
 function SideContainer(props) {
+	const dispatch = useDispatch();
 	const task = useSelector((state) => state.testStorage.currentTask);
 	const title = task.name;
 	const description = task.description;
 	const radioButtonTaskList = task.data?.radioButtonTaskList;
+	const currentResultIndex = useGetResultIndex();
+
+	const nextButtonClickedHandle = () => {
+		dispatch(nextButtonHadler(currentResultIndex));
+	};
 
 	return (
 		<div className={styles.contentWrapper}>
@@ -33,7 +42,11 @@ function SideContainer(props) {
 					);
 				})}
 			</div>
-			<Button color="white" label="Продолжить" />
+			<Button
+				color="white"
+				label="Продолжить"
+				onClick={nextButtonClickedHandle}
+			/>
 		</div>
 	);
 }
