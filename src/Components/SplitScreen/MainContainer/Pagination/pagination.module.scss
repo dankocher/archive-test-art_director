@@ -1,0 +1,38 @@
+@import "../../../../assets/styles/foundations.scss";
+
+.container {
+	display: flex;
+	align-items: center;
+	height: 4rem;
+
+	button {
+		height: 4rem;
+
+		i {
+			height: inherit;
+		}
+
+		&:hover {
+			path {
+				fill: red;
+			}
+		}
+
+		&:disabled {
+			path {
+				fill: $neutral-2;
+			}
+		}
+	}
+
+	&__paginationInfo {
+		font-size: 18px;
+		line-height: 22px;
+		color: $neutral-6;
+		margin: 0 1.2rem;
+	}
+
+	&__rightArrow {
+		transform: rotate(180deg);
+	}
+}

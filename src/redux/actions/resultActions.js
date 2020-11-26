@@ -7,9 +7,14 @@ export const login = (name, email, currentTestId) => ({
 	payload: { name, email, currentTestId },
 });
 
-export const startTask = (taskId, startData, QAList) => ({
+export const startTask = (
+	taskId,
+	startData,
+	taskList,
+	radioButtonTaskList
+) => ({
 	type: START_TASK,
-	payload: { taskId, startData, QAList },
+	payload: { taskId, startData, taskList, radioButtonTaskList },
 });
 
 export const setAnswerOfQA = (answer, resultIndex, index) => ({

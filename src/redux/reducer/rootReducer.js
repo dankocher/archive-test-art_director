@@ -16,7 +16,12 @@ const persistConfig = {
 const testStoragePersistConfig = {
 	key: "testStorage",
 	storage: storage,
-	whitelist: ["currentTaskId", "isNextBtnClicked"],
+	whitelist: [
+		"currentTaskId",
+		"isNextBtnClicked",
+		"currentSubTaskIndex",
+		"maxOpenedSubTaskIndex",
+	],
 };
 
 const rootReducer = combineReducers({

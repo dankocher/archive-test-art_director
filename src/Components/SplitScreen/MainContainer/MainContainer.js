@@ -2,7 +2,7 @@ import styles from "./mainContainer.module.scss";
 import React from "react";
 
 import Timer from "../../Timer/Timer";
-import Paginator from "./Paginator/Paginator";
+import Pagination from "./Pagination/Pagination";
 
 const exportText = { time: "05:15" };
 
@@ -14,7 +14,7 @@ function MainContainer(props) {
 			</div>
 			<div className={styles.container__body}>{props.mainContainerBody}</div>
 			<div className={styles.container__footer}>
-				<Paginator />
+				<Pagination />
 			</div>
 		</div>
 	);

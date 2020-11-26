@@ -47,7 +47,6 @@ function QuestionPage() {
 		Array(QAList.length)
 			.fill()
 			.map((_, i) => itemsRef[i] || createRef());
-		console.log(itemsRef);
 		// itemsRef.current = Array(QAList.length)
 		// 	.fill()
 		// 	.map((_, i) => itemsRef.current[i] || createRef());
