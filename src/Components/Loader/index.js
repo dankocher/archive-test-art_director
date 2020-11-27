@@ -13,6 +13,8 @@ import Authorization from "../Authorization/Authorization";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import QuestionPage from "../QuestionPage/QuestionPage";
 import SplitScreen from "../SplitScreen/SplitScreen";
+import BigTextMainContainer from "../SplitScreen/MainContainer/BigText/BigText";
+import Carousel from "../SplitScreen/MainContainer/Carousel/Carousel";
 
 import {
 	setTaskList,
@@ -32,11 +34,12 @@ const getPage = (taskType) => {
 		case QUSETION_ANSWER:
 			return <QuestionPage />;
 		case WORDS_RADIO_BUTTONS:
-			return <SplitScreen />;
+			return <SplitScreen mainContainer={<BigTextMainContainer />} />;
+		case ILLUSTRATIONS_ANSWERS:
+			return <SplitScreen mainContainer={<Carousel />} />;
 		// case ILLUSTRATION_RADIO_BUTTONS:
 		// 	return <SplitScreen rightSide={<Illustrations />} />;
-		// case ILLUSTRATIONS_ANSWERS:
-		// 	return <Illustrations />;
+
 		default:
 			break;
 	}

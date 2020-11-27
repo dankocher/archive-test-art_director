@@ -9,7 +9,7 @@ import TaskInformation from "../../TaskInformation/TaskInformation";
 import Button from "../../Button/Button";
 import RadioButtonAnswers from "./RadioButtonAnswers/RadioButtonAnswers";
 
-function SideContainer(props) {
+function SideContainer() {
 	const dispatch = useDispatch();
 	const task = useSelector((state) => state.testStorage.currentTask);
 	const title = task.name;
@@ -17,9 +17,16 @@ function SideContainer(props) {
 	const radioButtonTaskList = task.data?.radioButtonTaskList;
 	const currentResultIndex = useGetResultIndex();
 
+	
+
 	const nextButtonClickedHandle = () => {
 		dispatch(nextButtonHadler(currentResultIndex));
 	};
+
+	const getSideTaskView = ()=>{
+
+
+	}
 
 	return (
 		<div className={styles.contentWrapper}>

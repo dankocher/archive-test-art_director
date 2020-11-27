@@ -68,7 +68,13 @@ function Carousel() {
 
 	return (
 		<>
-			<PhotoModal isHidden={isHiddenPhotoModal} currentImgUrl={currentImgUrl} />
+			{!isHiddenPhotoModal ? (
+				<PhotoModal
+					// isHidden={isHiddenPhotoModal}
+					currentImgUrl={currentImgUrl}
+				/>
+			) : null}
+
 			<div
 				className="centred-content--Carousel"
 				onMouseEnter={() => setHoveredImage(false)}

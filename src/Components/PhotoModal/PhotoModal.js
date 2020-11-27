@@ -2,7 +2,10 @@ import "./PhotoModal.css";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { setIsHiddenPhotoModal } from "../../redux/actions/caruselActions";
+import {
+	setIsHiddenPhotoModal,
+	setScaleCounter,
+} from "../../redux/actions/caruselActions";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
@@ -10,27 +13,40 @@ import Arrow from "../SplitScreen/MainContainer/Carousel/Arrow/Arrow";
 import ZoomController from "./ZoomController/ZoomController";
 import closeIcon from "../../helpers/icons/close-icon";
 
-const MAX_ZOOM = 1.75;
-const ZOOM_STEP = 0.25;
+const MAX_SCALE_COUNTER = 3;
 
-function PhotoModal({ isHidden = true, currentImgUrl }) {
+function PhotoModal({ currentImgUrl }) {
 	const dispatch = useDispatch();
-	const style = isHidden ? { visibility: "hidden" } : {};
 
 	const handlerCloseButton = (event, resetTransform) => {
 		event.stopPropagation();
+		// resetTransform();
+		dispatch(setScaleCounter(0));
 		dispatch(setIsHiddenPhotoModal());
 	};
+
+	// useEffect(() => {
+	// 	resetTransform();
+	// }, [currentImgUrl]);
 
 	return (
 		<TransformWrapper
 			wheel={{ disabled: true }}
 			doubleClick={{ disabled: true }}
 			defaultScale={1}
+			zoomIn={{ step: 6 }}
+			zoomOut={{ step: 7.5 }}
 		>
-			{({ setScale, resetTransform, ...rest }) => (
+			{({
+				setScale,
+				resetTransform,
+				setDefaultState,
+				zoomIn,
+				zoomOut,
+				...rest
+			}) => (
 				<React.Fragment>
-					<div style={style} className={"main-container--photoModal"}>
+					<div className={"main-container--photoModal"}>
 						<div className="wrapper-relative--photoModal">
 							<button
 								onClick={(event) => handlerCloseButton(event, resetTransform)}
@@ -39,11 +55,16 @@ function PhotoModal({ isHidden = true, currentImgUrl }) {
 								<i>{closeIcon}</i>
 							</button>
 						</div>
-
+						{console.log(rest)}
 						<div
 							className={"centred-carouselArrow leftArrow-position--photoModal"}
 						>
-							<Arrow isDark={true} isToLeft={true} />
+							{/* {console.log(resetTransform)} */}
+							<Arrow
+								isDark={true}
+								isToLeft={true}
+								resetTransform={setDefaultState}
+							/>
 						</div>
 
 						<div className={"img-container--photoModal"}>
@@ -61,15 +82,15 @@ function PhotoModal({ isHidden = true, currentImgUrl }) {
 								"centred-carouselArrow rightArrow-position--photoModal"
 							}
 						>
-							<Arrow isDark={true} />
+							<Arrow isDark={true} resetTransform={setDefaultState} />
 						</div>
 						<div className="wrapper-relative--photoModal">
 							<div className="zoomController-container--photoModal">
 								<ZoomController
-									setScale={setScale}
-									maxZoom={MAX_ZOOM}
-									zoomStep={ZOOM_STEP}
+									zoomIn={zoomIn}
+									zoomOut={zoomOut}
 									resetTransform={resetTransform}
+									maxScaleCounter={MAX_SCALE_COUNTER}
 								/>
 							</div>
 						</div>

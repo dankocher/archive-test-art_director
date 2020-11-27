@@ -4,6 +4,8 @@ import {
 	setIsNextBtnClicked,
 } from "../redux/actions/testActions";
 
+import setNextTaskId from "./setNextTaskId";
+
 const nextButtonHadler = (currentResultIndex) => {
 	return (dispatch, getState) => {
 		const state = getState();
@@ -33,6 +35,7 @@ const nextButtonHadler = (currentResultIndex) => {
 				dispatch(setIsNextBtnClicked(false));
 
 				// go to next task
+				dispatch(setNextTaskId());
 				console.log("ia poshel na sledushee zadanie");
 			}
 		} else {
