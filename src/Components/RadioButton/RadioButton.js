@@ -5,11 +5,13 @@ import { isFunction } from "../../utils/validators/isFunction";
 
 function RadioButton(props) {
 	const color = props.color ? props.color : "#000000";
+
 	const onChange = isFunction(props.onChange)
 		? props.onChange
 		: () => {
 				console.log("is not a function");
 		  };
+
 	return (
 		<div className={styles.container}>
 			<div>
@@ -18,7 +20,7 @@ function RadioButton(props) {
 					htmlFor={props.id}
 					className={styles.container__radioButton}
 				>
-					{props.value ? (
+					{props.checkedValue === props.value ? (
 						<label
 							style={{ backgroundColor: color }}
 							htmlFor={props.id}
@@ -36,7 +38,7 @@ function RadioButton(props) {
 				name={props.name}
 				type="radio"
 				value={props.value}
-				onChange={() => onChange()}
+				onChange={(event) => onChange(event)}
 			/>
 		</div>
 	);

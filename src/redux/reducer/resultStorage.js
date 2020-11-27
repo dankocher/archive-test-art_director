@@ -1,7 +1,12 @@
 import update from "react-addons-update";
 import { getPreparedTask } from "../reducerHelpers";
 
-import { LOGIN, START_TASK, SET_QA_DATA } from "../actions/resultActions";
+import {
+	LOGIN,
+	START_TASK,
+	SET_QA_DATA,
+	SET_WORD_ANSWER,
+} from "../actions/resultActions";
 
 import { initialState } from "../initialStates";
 
@@ -24,6 +29,24 @@ function resultStorage(state = initialState, action) {
 							[action.index]: {
 								answer: {
 									$set: action.payload,
+								},
+							},
+						},
+					},
+				},
+			});
+		case SET_WORD_ANSWER:
+			return update(state, {
+				results: {
+					[action.resultIndex]: {
+						data: {
+							[action.dataIndex]: {
+								answers: {
+									[action.answersIndex]: {
+										optionId: {
+											$set: action.payload,
+										},
+									},
 								},
 							},
 						},
