@@ -8,7 +8,7 @@ const closeIcon = (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<rect width="48" height="48" rx="4" fill="#7A7A7A" fill-opacity="0.4" />
+		<rect width="48" height="48" rx="4" fill="#7A7A7A" fillOpacity="0.4" />
 		<rect
 			x="18.3428"
 			y="16.9287"

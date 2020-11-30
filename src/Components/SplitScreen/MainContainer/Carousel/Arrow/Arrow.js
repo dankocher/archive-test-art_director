@@ -52,12 +52,9 @@ function Arrow({
 		"light--carouselArrow": !isDark,
 	});
 
-	const style = isHidden ? { visibility: "hidden" } : {};
-
 	return (
 		<>
 			<button
-				style={style}
 				className={arrowClass}
 				onClick={isToLeft ? handlerLeftArrow : handlerRightArrow}
 			>

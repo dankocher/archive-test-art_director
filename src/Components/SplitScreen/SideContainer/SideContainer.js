@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import nextButtonHadler from "../../../thunks/nextButtonHadler";
 import { useGetResultIndex } from "../../../helpers/customHooks/getResultIndex";
 
+import { ILLUSTRATIONS_ANSWERS } from "../../../helpers/taskTypes";
+
 import TaskInformation from "../../TaskInformation/TaskInformation";
 import Button from "../../Button/Button";
 import RadioButtonAnswers from "./RadioButtonAnswers/RadioButtonAnswers";
+import TextArea from "../../TextArea/TextArea";
 
 function SideContainer() {
 	const dispatch = useDispatch();
@@ -17,16 +20,26 @@ function SideContainer() {
 	const radioButtonTaskList = task.data?.radioButtonTaskList;
 	const currentResultIndex = useGetResultIndex();
 
-	
-
 	const nextButtonClickedHandle = () => {
 		dispatch(nextButtonHadler(currentResultIndex));
 	};
 
-	const getSideTaskView = ()=>{
-
-
-	}
+	const getSideTaskView = () => {
+		if (task.type === ILLUSTRATIONS_ANSWERS) {
+			return <TextArea />;
+		} else {
+			return radioButtonTaskList?.map((radioButtonTask, key) => {
+				return (
+					<RadioButtonAnswers
+						key={key}
+						index={key}
+						color={"red"}
+						radioButtonTask={radioButtonTask}
+					/>
+				);
+			});
+		}
+	};
 
 	return (
 		<div className={styles.contentWrapper}>
@@ -37,17 +50,7 @@ function SideContainer() {
 					<h2>{title}</h2>
 					<p>{description}</p>
 				</article>
-
-				{radioButtonTaskList?.map((radioButtonTask, key) => {
-					return (
-						<RadioButtonAnswers
-							key={key}
-							index={key}
-							color={"red"}
-							radioButtonTask={radioButtonTask}
-						/>
-					);
-				})}
+				{getSideTaskView()}
 			</div>
 			<Button
 				color="white"

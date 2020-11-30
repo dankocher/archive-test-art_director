@@ -9,9 +9,9 @@ const classNames = require("classnames");
 function TextArea(props) {
 	const {
 		rows,
-		defaultValue,
+		defaultValue = "",
 		text,
-		setText,
+		setText = () => {},
 		defaultHeight,
 		error,
 		...args

@@ -1,12 +1,12 @@
+import styles from "./bullets.module.scss";
 import React from "react";
-import "./Bullets.css";
 
 import Bullet from "./Bullet/Bullet";
 
 function Bullets(props) {
 	return (
-		<div className="bullets-wrapper--carousel">
-			{props.arrOfImages.map((element, key) => {
+		<div className={styles.container}>
+			{props.arrOfImages.map((_, key) => {
 				return key === props.active ? (
 					<Bullet active={true} key={key} index={key} />
 				) : (

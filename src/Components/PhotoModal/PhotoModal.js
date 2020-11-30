@@ -1,4 +1,4 @@
-import "./PhotoModal.css";
+import styles from "./photoModal.module.scss";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 
@@ -46,20 +46,17 @@ function PhotoModal({ currentImgUrl }) {
 				...rest
 			}) => (
 				<React.Fragment>
-					<div className={"main-container--photoModal"}>
-						<div className="wrapper-relative--photoModal">
+					<div className={styles.container}>
+						<div className={styles.container__wrapperRelative}>
 							<button
 								onClick={(event) => handlerCloseButton(event, resetTransform)}
-								className="hidden-button close-button--photoModal"
+								className={`hidden-button ${styles.container__wrapperRelative__closeBtn}`}
 							>
 								<i>{closeIcon}</i>
 							</button>
 						</div>
-						{console.log(rest)}
-						<div
-							className={"centred-carouselArrow leftArrow-position--photoModal"}
-						>
-							{/* {console.log(resetTransform)} */}
+						{/* {console.log(rest)} */}
+						<div className={styles.container__leftArrow}>
 							<Arrow
 								isDark={true}
 								isToLeft={true}
@@ -67,7 +64,7 @@ function PhotoModal({ currentImgUrl }) {
 							/>
 						</div>
 
-						<div className={"img-container--photoModal"}>
+						<div className={styles.container__imgContainer}>
 							<TransformComponent>
 								<img
 									style={{ maxWidth: "100%", maxHeight: "100%" }}
@@ -77,15 +74,11 @@ function PhotoModal({ currentImgUrl }) {
 							</TransformComponent>
 						</div>
 
-						<div
-							className={
-								"centred-carouselArrow rightArrow-position--photoModal"
-							}
-						>
+						<div className={styles.container__rightArrow}>
 							<Arrow isDark={true} resetTransform={setDefaultState} />
 						</div>
-						<div className="wrapper-relative--photoModal">
-							<div className="zoomController-container--photoModal">
+						<div className={styles.container__zoomWrapper}>
+							<div className={styles.container__zoomWrapper__zoomContainer}>
 								<ZoomController
 									zoomIn={zoomIn}
 									zoomOut={zoomOut}

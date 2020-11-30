@@ -1,6 +1,6 @@
+import styles from "./carousel.module.scss";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./Carousel.css";
 
 import {
 	setImageLength,
@@ -45,44 +45,16 @@ function Carousel() {
 		);
 	};
 
-	//   useEffect(() => {
-	//     fetch("http://picsum.photos/v2/list?page=1&limit=10")
-	//       .then((res) => {
-	// 		console.log(res);
-	// 		debugger
-	//         if (!res.ok) {
-	//           throw new Error("Network response was not ok");
-	//         }
-	//         return res.json();
-	//       })
-	//       .then((result) => {
-	//         setImageList(result);
-	//         dispatch(setImageLength(result.length));
-	//         console.log(imageList);
-	//         console.log(currentImageIndex);
-	//       })
-	//       .catch((error) => {
-	//         console.error("Error:", error);
-	//       });
-	//   }, []);
-
 	return (
 		<>
 			{!isHiddenPhotoModal ? (
-				<PhotoModal
-					// isHidden={isHiddenPhotoModal}
-					currentImgUrl={currentImgUrl}
-				/>
+				<PhotoModal currentImgUrl={currentImgUrl} />
 			) : null}
 
-			<div
-				className="centred-content--Carousel"
-				onMouseEnter={() => setHoveredImage(false)}
-				onMouseLeave={() => setHoveredImage(true)}
-			>
+			<div className={styles.container}>
 				{isOneImg() ? null : (
-					<div className="leftArrow-position--carousel centred-carouselArrow">
-						<Arrow isHidden={hoveredImage} isToLeft={true} isDark={false} />
+					<div className={styles.container__leftArrow}>
+						<Arrow isToLeft={true} isDark={false} />
 					</div>
 				)}
 				<img
@@ -92,8 +64,8 @@ function Carousel() {
 					alt={""}
 				/>
 				{isOneImg() ? null : (
-					<div className="rightArrow-position--carousel centred-carouselArrow">
-						<Arrow isHidden={hoveredImage} isDark={false} />
+					<div className={styles.container__rightArrow}>
+						<Arrow isDark={false} />
 					</div>
 				)}
 
@@ -106,3 +78,24 @@ function Carousel() {
 }
 
 export default Carousel;
+
+//   useEffect(() => {
+//     fetch("http://picsum.photos/v2/list?page=1&limit=10")
+//       .then((res) => {
+// 		console.log(res);
+// 		debugger
+//         if (!res.ok) {
+//           throw new Error("Network response was not ok");
+//         }
+//         return res.json();
+//       })
+//       .then((result) => {
+//         setImageList(result);
+//         dispatch(setImageLength(result.length));
+//         console.log(imageList);
+//         console.log(currentImageIndex);
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//       });
+//   }, []);
