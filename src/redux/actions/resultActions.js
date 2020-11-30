@@ -18,7 +18,7 @@ export const startTask = (
 	payload: { taskId, startData, taskList, radioButtonTaskList },
 });
 
-export const setAnswerOfQA = (answer, resultIndex, index) => ({
+export const setTextAreaAnswer = (answer, resultIndex, index) => ({
 	type: SET_QA_DATA,
 	payload: answer,
 	resultIndex,

@@ -10,7 +10,7 @@ import { ILLUSTRATIONS_ANSWERS } from "../../../helpers/taskTypes";
 import TaskInformation from "../../TaskInformation/TaskInformation";
 import Button from "../../Button/Button";
 import RadioButtonAnswers from "./RadioButtonAnswers/RadioButtonAnswers";
-import TextArea from "../../TextArea/TextArea";
+import TextAreaSettings from "./TextAreaSettings/TextAreaSettings";
 
 function SideContainer() {
 	const dispatch = useDispatch();
@@ -26,14 +26,13 @@ function SideContainer() {
 
 	const getSideTaskView = () => {
 		if (task.type === ILLUSTRATIONS_ANSWERS) {
-			return <TextArea />;
+			return <TextAreaSettings />;
 		} else {
 			return radioButtonTaskList?.map((radioButtonTask, key) => {
 				return (
 					<RadioButtonAnswers
 						key={key}
 						index={key}
-						color={"red"}
 						radioButtonTask={radioButtonTask}
 					/>
 				);

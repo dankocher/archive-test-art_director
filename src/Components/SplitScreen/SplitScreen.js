@@ -6,8 +6,6 @@ import MainContainer from "./MainContainer/MainContainer";
 import SideContainer from "./SideContainer/SideContainer";
 import RadioButtonAnswers from "./SideContainer/RadioButtonAnswers/RadioButtonAnswers";
 
-import Carousel from "./MainContainer/Carousel/Carousel";
-
 function SplitScreen({ mainContainer }) {
 	return (
 		<div className={styles.container}>

@@ -6,16 +6,21 @@ import {
 	setImageLength,
 	setIsHiddenPhotoModal,
 } from "../../../../redux/actions/caruselActions";
-import imgList from "../../../../utils/imgList";
+// import imgList from "../../../../utils/imgList";
+
+import { getImgPath } from "../../../../helpers/getImgPath";
+import startTaskThunk from "../../../../thunks/startTaskThunk";
+import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
 
 import Arrow from "./Arrow/Arrow";
 import Bullets from "./Bullets/Bullets";
 import PhotoModal from "../../../PhotoModal/PhotoModal";
 
 function Carousel() {
-	const [imageList, setImageList] = useState([]);
-	const [hoveredImage, setHoveredImage] = useState(true);
 	const dispatch = useDispatch();
+
+	const resultIndex = useGetResultIndex();
+
 	const currentImageIndex = useSelector(
 		(state) => state.caruselReducer.current
 	);
@@ -23,14 +28,25 @@ function Carousel() {
 		(state) => state.caruselReducer.isHiddenPhotoModal
 	);
 
+	const task = useSelector((state) => state.testStorage.currentTask);
+	const taskId = task._id;
+	const imgGrid = task.data.imgGrid;
+	const currentSubTaskIndex = useSelector(
+		(state) => state.testStorage.currentSubTaskIndex
+	);
+
+	const imageList = imgGrid[currentSubTaskIndex]?.imgColumnList;
+
 	const currentImgUrl =
-		imageList === undefined || imageList.length === 0
+		imageList == null || imageList.length === 0
 			? require("../../../../utils/img/noImgBig.png")
-			: imageList[currentImageIndex]["download_url"];
+			: getImgPath(imageList[currentImageIndex].name);
 
 	useEffect(() => {
-		setImageList(imgList);
-		dispatch(setImageLength(imgList.length));
+		dispatch(startTaskThunk(taskId, resultIndex, imgGrid));
+		// setImageList(currentImageList);
+		if (imageList == null) return;
+		dispatch(setImageLength(imageList.length));
 	}, []);
 
 	const handleImgOnClick = () => {
@@ -38,13 +54,10 @@ function Carousel() {
 	};
 
 	const isOneImg = () => {
-		return (
-			imageList === undefined ||
-			imageList.length === 0 ||
-			imageList.length === 1
-		);
+		return imageList === undefined || imageList.length <= 1;
 	};
 
+	console.log(currentImgUrl);
 	return (
 		<>
 			{!isHiddenPhotoModal ? (
@@ -78,24 +91,3 @@ function Carousel() {
 }
 
 export default Carousel;
-
-//   useEffect(() => {
-//     fetch("http://picsum.photos/v2/list?page=1&limit=10")
-//       .then((res) => {
-// 		console.log(res);
-// 		debugger
-//         if (!res.ok) {
-//           throw new Error("Network response was not ok");
-//         }
-//         return res.json();
-//       })
-//       .then((result) => {
-//         setImageList(result);
-//         dispatch(setImageLength(result.length));
-//         console.log(imageList);
-//         console.log(currentImageIndex);
-//       })
-//       .catch((error) => {
-//         console.error("Error:", error);
-//       });
-//   }, []);

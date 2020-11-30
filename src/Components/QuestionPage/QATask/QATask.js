@@ -6,7 +6,7 @@ import TextArea from "../../TextArea/TextArea";
 import errorIcon from "../../../helpers/icons/error-icon";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setAnswerOfQA } from "../../../redux/actions/resultActions";
+import { setTextAreaAnswer } from "../../../redux/actions/resultActions";
 
 const classNames = require("classnames");
 
@@ -28,7 +28,7 @@ function QATask(props) {
 
 	const saveAnswer = (localAnswer) => {
 		if (answer === localAnswer) return;
-		dispatch(setAnswerOfQA(localAnswer, resultIndex, index));
+		dispatch(setTextAreaAnswer(localAnswer, resultIndex, index));
 	};
 
 	const validationAnswer = () => {
