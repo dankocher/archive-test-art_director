@@ -4,6 +4,12 @@
 .default {
 	height: 1rem;
 	width: 1rem;
+	border-radius: 50%;
+	box-shadow: 0px 0px 20px 8px rgba(255, 255, 255, 0.25);
+
+	svg {
+		max-height: 100%;
+	}
 
 	i {
 		height: inherit;

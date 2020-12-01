@@ -4,6 +4,8 @@ import {
 	setIsNextBtnClicked,
 } from "../redux/actions/testActions";
 
+import { ILLUSTRATIONS_ANSWERS } from "../helpers/taskTypes";
+
 import setNextTaskId from "./setNextTaskId";
 
 const nextButtonHadler = (currentResultIndex) => {
@@ -16,14 +18,24 @@ const nextButtonHadler = (currentResultIndex) => {
 		const subTaskLength =
 			state.resultStorage.results[currentResultIndex].data.length - 1;
 
-		const subTaskAnswers =
+		const subTaskAnswersRB =
 			state.resultStorage.results[currentResultIndex].data[currentSubTaskIndex]
 				.answers;
 
+		const subTaskAnswersIA =
+			state.resultStorage.results[currentResultIndex].data[currentSubTaskIndex]
+				.answer;
+
+		const taskType = state.testStorage.currentTask.type;
+
 		dispatch(setIsNextBtnClicked(true));
 
-		for (const answer of subTaskAnswers) {
-			if (answer.optionId == null) return;
+		if (taskType === ILLUSTRATIONS_ANSWERS) {
+			if (subTaskAnswersIA == null || subTaskAnswersIA === "") return;
+		} else {
+			for (const answer of subTaskAnswersRB) {
+				if (answer.optionId == null) return;
+			}
 		}
 
 		if (currentSubTaskIndex === maxOpenedSubTaskIndex) {

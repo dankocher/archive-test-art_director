@@ -11,12 +11,10 @@ function SplitScreen({ mainContainer }) {
 		<div className={styles.container}>
 			<MainContainer mainContainerBody={mainContainer} />
 
-			<div className={styles.container__sideShadow}>
-				<SideContainer answerType={<RadioButtonAnswers color="red" />} />
-				{/* <SideContainer
+			<SideContainer answerType={<RadioButtonAnswers color="red" />} />
+			{/* <SideContainer
           args={[<SideContainerTask />, <TextField error={false} />]}
         /> */}
-			</div>
 		</div>
 	);
 }

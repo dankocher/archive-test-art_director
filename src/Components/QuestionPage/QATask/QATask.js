@@ -14,7 +14,7 @@ function QATask(props) {
 	const dispatch = useDispatch();
 
 	const { data, responseLimitation, index, resultIndex, itemsRef } = props;
-	const { question, description, id } = data;
+	const { question, description } = data;
 	// console.log(itemsRef);
 	const [localAnswer, setLocalAnswer] = useState("");
 

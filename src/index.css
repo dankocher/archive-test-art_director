@@ -20,6 +20,10 @@ textarea {
 	font-family: "Golos Text";
 }
 
+i {
+	display: flex;
+}
+
 body * {
 	margin: 0;
 	padding: 0;

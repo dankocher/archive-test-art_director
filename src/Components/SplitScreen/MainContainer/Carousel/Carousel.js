@@ -57,11 +57,10 @@ function Carousel() {
 		return imageList === undefined || imageList.length <= 1;
 	};
 
-	console.log(currentImgUrl);
 	return (
 		<>
 			{!isHiddenPhotoModal ? (
-				<PhotoModal currentImgUrl={currentImgUrl} />
+				<PhotoModal currentImgUrl={currentImgUrl} isOneImg={isOneImg} />
 			) : null}
 
 			<div className={styles.container}>

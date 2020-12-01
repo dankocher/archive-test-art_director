@@ -18,10 +18,8 @@ function TextArea(props) {
 	} = props;
 
 	const textAreaRef = useRef(null);
-	// console.log(textAreaRef);
 	// const [text, setText] = useState("");
 	const [textAreaHeight, setTextAreaHeight] = useState("auto");
-	const [parentHeight, setParentHeight] = useState("auto");
 
 	const maxLength = props.maxLength ? props.maxLength : 240;
 	const onBlur = isFunction(props.onBlur)
@@ -29,11 +27,13 @@ function TextArea(props) {
 		: () => console.log("Is not a function");
 
 	useEffect(() => {
+		if (defaultValue === text) return;
+		setTextAreaHeight("auto");
 		setText(defaultValue);
 	}, [defaultValue]);
 
 	useEffect(() => {
-		setParentHeight(`${textAreaRef.current.scrollHeight}px`);
+		// console.log(textAreaRef.current.scrollHeight);
 		setTextAreaHeight(`${textAreaRef.current.scrollHeight}px`);
 	}, [text]);
 
@@ -43,7 +43,6 @@ function TextArea(props) {
 			return;
 		}
 		setTextAreaHeight("auto");
-		setParentHeight(`${textAreaRef.current.scrollHeight}px`);
 		setText(event.target.value);
 	};
 
@@ -52,27 +51,19 @@ function TextArea(props) {
 	});
 
 	return (
-		<div
+		<textarea
+			{...args}
+			ref={textAreaRef}
+			rows={rows ? rows : 1}
 			style={{
-				minHeight: defaultHeight || parentHeight,
-				display: "flex",
-				alignItems: "flex-end",
+				height: textAreaHeight,
+				overflow: "hidden",
 			}}
-		>
-			<textarea
-				{...args}
-				ref={textAreaRef}
-				rows={rows ? rows : 1}
-				style={{
-					height: textAreaHeight,
-					overflow: "hidden",
-				}}
-				value={text}
-				className={props.className != null ? props.className : defaultStyles}
-				onChange={onChangeHandler}
-				onBlur={() => onBlur(text)}
-			/>
-		</div>
+			value={text}
+			className={props.className != null ? props.className : defaultStyles}
+			onChange={onChangeHandler}
+			onBlur={() => onBlur(text)}
+		/>
 	);
 }
 

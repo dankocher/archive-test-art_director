@@ -1,5 +1,5 @@
 import styles from "./photoModal.module.scss";
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -15,19 +15,15 @@ import closeIcon from "../../helpers/icons/close-icon";
 
 const MAX_SCALE_COUNTER = 3;
 
-function PhotoModal({ currentImgUrl }) {
+function PhotoModal({ currentImgUrl, isOneImg }) {
 	const dispatch = useDispatch();
 
-	const handlerCloseButton = (event, resetTransform) => {
+	const handlerCloseButton = (event) => {
 		event.stopPropagation();
-		// resetTransform();
+
 		dispatch(setScaleCounter(0));
 		dispatch(setIsHiddenPhotoModal());
 	};
-
-	// useEffect(() => {
-	// 	resetTransform();
-	// }, [currentImgUrl]);
 
 	return (
 		<TransformWrapper
@@ -55,14 +51,16 @@ function PhotoModal({ currentImgUrl }) {
 								<i>{closeIcon}</i>
 							</button>
 						</div>
-						{/* {console.log(rest)} */}
-						<div className={styles.container__leftArrow}>
-							<Arrow
-								isDark={true}
-								isToLeft={true}
-								resetTransform={setDefaultState}
-							/>
-						</div>
+
+						{isOneImg() ? null : (
+							<div className={styles.container__leftArrow}>
+								<Arrow
+									isDark={true}
+									isToLeft={true}
+									resetTransform={setDefaultState}
+								/>
+							</div>
+						)}
 
 						<div className={styles.container__imgContainer}>
 							<TransformComponent>
@@ -74,9 +72,12 @@ function PhotoModal({ currentImgUrl }) {
 							</TransformComponent>
 						</div>
 
-						<div className={styles.container__rightArrow}>
-							<Arrow isDark={true} resetTransform={setDefaultState} />
-						</div>
+						{isOneImg() ? null : (
+							<div className={styles.container__rightArrow}>
+								<Arrow isDark={true} resetTransform={setDefaultState} />
+							</div>
+						)}
+
 						<div className={styles.container__zoomWrapper}>
 							<div className={styles.container__zoomWrapper__zoomContainer}>
 								<ZoomController
