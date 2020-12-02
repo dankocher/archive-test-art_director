@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
 import startTaskThunk from "../../../../thunks/startTaskThunk";
 
-const exportText = "Майндфулнесс";
-
-function BigTextMainContainer(props) {
+function BigTextMainContainer() {
 	const dispatch = useDispatch();
+
+	const resultIndex = useGetResultIndex();
 
 	const task = useSelector((state) => state.testStorage.currentTask);
 	const taskId = task._id;
@@ -18,9 +18,8 @@ function BigTextMainContainer(props) {
 		(state) => state.testStorage.currentSubTaskIndex
 	);
 
-	const word = task.data.wordList[currentSubTaskIndex]?.word;
+	const word = wordList[currentSubTaskIndex]?.word;
 
-	const resultIndex = useGetResultIndex();
 	useEffect(() => {
 		dispatch(
 			startTaskThunk(taskId, resultIndex, wordList, radioButtonTaskList)

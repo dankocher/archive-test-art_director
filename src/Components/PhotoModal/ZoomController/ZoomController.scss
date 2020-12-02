@@ -1,11 +1,11 @@
-$activeColor: #ffffff;
+@import "../../../assets/styles/foundations.scss";
 
 .zoom-controller-button {
 	height: 4.4rem;
 	width: 4.4rem;
 
 	&:hover {
-		background-color: #484848;
+		background-color: $neutral-5;
 	}
 
 	i {
@@ -17,9 +17,9 @@ $activeColor: #ffffff;
 
 .activeColor {
 	path {
-		fill: $activeColor;
+		fill: $white;
 	}
 	rect {
-		fill: $activeColor;
+		fill: $white;
 	}
 }

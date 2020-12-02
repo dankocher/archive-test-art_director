@@ -15,12 +15,13 @@ const startTaskThunk = (taskId, resultIndex, taskList, radioButtonTaskList) => {
 
 		if (resultIndex !== -1) return;
 
+		if (taskType !== QUSETION_ANSWER) {
+			dispatch(setCurrentSubTaskIndex(0));
+			dispatch(setMaxOpenedSubTaskIndex(0));
+		}
+
 		const startDate = isTimeConsidered ? new Date().getTime() : undefined;
 		dispatch(startTask(taskId, startDate, taskList, radioButtonTaskList));
-
-		if (taskType === QUSETION_ANSWER) return;
-		dispatch(setCurrentSubTaskIndex(0));
-		dispatch(setMaxOpenedSubTaskIndex(0));
 	};
 };
 

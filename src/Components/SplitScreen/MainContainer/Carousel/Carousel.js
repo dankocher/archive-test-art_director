@@ -1,21 +1,26 @@
+import styles from "./carousel.module.scss";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./Carousel.css";
 
 import {
 	setImageLength,
 	setIsHiddenPhotoModal,
+	setImageIndex,
 } from "../../../../redux/actions/caruselActions";
-import imgList from "../../../../utils/imgList";
+
+import { getImgPath } from "../../../../helpers/getImgPath";
+import startTaskThunk from "../../../../thunks/startTaskThunk";
+import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
 
 import Arrow from "./Arrow/Arrow";
 import Bullets from "./Bullets/Bullets";
 import PhotoModal from "../../../PhotoModal/PhotoModal";
 
 function Carousel() {
-	const [imageList, setImageList] = useState([]);
-	const [hoveredImage, setHoveredImage] = useState(true);
 	const dispatch = useDispatch();
+
+	const resultIndex = useGetResultIndex();
+
 	const currentImageIndex = useSelector(
 		(state) => state.caruselReducer.current
 	);
@@ -23,60 +28,57 @@ function Carousel() {
 		(state) => state.caruselReducer.isHiddenPhotoModal
 	);
 
+	const task = useSelector((state) => state.testStorage.currentTask);
+	const taskId = task._id;
+	const imgGrid = task.data.imgGrid;
+	const currentSubTaskIndex = useSelector(
+		(state) => state.testStorage.currentSubTaskIndex
+	);
+	const radioButtonTaskList = task.data.radioButtonTaskList;
+
+	const imageList = imgGrid[currentSubTaskIndex]?.imgColumnList;
+	console.log(imageList);
+
 	const currentImgUrl =
-		imageList === undefined || imageList.length === 0
+		imageList == null || imageList.length === 0
 			? require("../../../../utils/img/noImgBig.png")
-			: imageList[currentImageIndex]["download_url"];
+			: getImgPath(imageList[currentImageIndex]?.name);
 
 	useEffect(() => {
-		setImageList(imgList);
-		dispatch(setImageLength(imgList.length));
+		if (radioButtonTaskList == null) {
+			dispatch(startTaskThunk(taskId, resultIndex, imgGrid));
+		} else {
+			dispatch(
+				startTaskThunk(taskId, resultIndex, imgGrid, radioButtonTaskList)
+			);
+		}
+		// setImageList(currentImageList);
 	}, []);
+
+	useEffect(() => {
+		if (imageList == null) return;
+		dispatch(setImageLength(imageList.length));
+		dispatch(setImageIndex(0));
+	}, [imageList.length]);
 
 	const handleImgOnClick = () => {
 		dispatch(setIsHiddenPhotoModal());
 	};
 
 	const isOneImg = () => {
-		return (
-			imageList === undefined ||
-			imageList.length === 0 ||
-			imageList.length === 1
-		);
+		return imageList === undefined || imageList.length <= 1;
 	};
-
-	//   useEffect(() => {
-	//     fetch("http://picsum.photos/v2/list?page=1&limit=10")
-	//       .then((res) => {
-	// 		console.log(res);
-	// 		debugger
-	//         if (!res.ok) {
-	//           throw new Error("Network response was not ok");
-	//         }
-	//         return res.json();
-	//       })
-	//       .then((result) => {
-	//         setImageList(result);
-	//         dispatch(setImageLength(result.length));
-	//         console.log(imageList);
-	//         console.log(currentImageIndex);
-	//       })
-	//       .catch((error) => {
-	//         console.error("Error:", error);
-	//       });
-	//   }, []);
 
 	return (
 		<>
-			<PhotoModal isHidden={isHiddenPhotoModal} currentImgUrl={currentImgUrl} />
-			<div
-				className="centred-content--Carousel"
-				onMouseEnter={() => setHoveredImage(false)}
-				onMouseLeave={() => setHoveredImage(true)}
-			>
+			{!isHiddenPhotoModal ? (
+				<PhotoModal currentImgUrl={currentImgUrl} isOneImg={isOneImg} />
+			) : null}
+
+			<div className={styles.container}>
 				{isOneImg() ? null : (
-					<div className="leftArrow-position--carousel centred-carouselArrow">
-						<Arrow isHidden={hoveredImage} isToLeft={true} isDark={false} />
+					<div className={styles.container__leftArrow}>
+						<Arrow isToLeft={true} isDark={false} />
 					</div>
 				)}
 				<img
@@ -86,8 +88,8 @@ function Carousel() {
 					alt={""}
 				/>
 				{isOneImg() ? null : (
-					<div className="rightArrow-position--carousel centred-carouselArrow">
-						<Arrow isHidden={hoveredImage} isDark={false} />
+					<div className={styles.container__rightArrow}>
+						<Arrow isDark={false} />
 					</div>
 				)}
 

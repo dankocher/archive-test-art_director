@@ -4,7 +4,7 @@ import { getPreparedTask } from "../reducerHelpers";
 import {
 	LOGIN,
 	START_TASK,
-	SET_QA_DATA,
+	SET_TEXT_AREA_DATA,
 	SET_WORD_ANSWER,
 } from "../actions/resultActions";
 
@@ -21,7 +21,7 @@ function resultStorage(state = initialState, action) {
 			};
 		case START_TASK:
 			return getPreparedTask(state, action);
-		case SET_QA_DATA:
+		case SET_TEXT_AREA_DATA:
 			return update(state, {
 				results: {
 					[action.resultIndex]: {

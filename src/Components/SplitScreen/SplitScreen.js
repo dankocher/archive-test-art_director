@@ -5,21 +5,16 @@ import MainContainer from "./MainContainer/MainContainer";
 
 import SideContainer from "./SideContainer/SideContainer";
 import RadioButtonAnswers from "./SideContainer/RadioButtonAnswers/RadioButtonAnswers";
-// import TextField from "../TextField/TextField";
-import BigTextMainContainer from "./MainContainer/BigText/BigText";
-import Carousel from "./MainContainer/Carousel/Carousel";
 
-function SplitScreen() {
+function SplitScreen({ mainContainer }) {
 	return (
 		<div className={styles.container}>
-			<MainContainer mainContainerBody={<BigTextMainContainer />} />
+			<MainContainer mainContainerBody={mainContainer} />
 
-			<div className={styles.container__sideShadow}>
-				<SideContainer answerType={<RadioButtonAnswers color="red" />} />
-				{/* <SideContainer
+			<SideContainer answerType={<RadioButtonAnswers color="red" />} />
+			{/* <SideContainer
           args={[<SideContainerTask />, <TextField error={false} />]}
         /> */}
-			</div>
 		</div>
 	);
 }

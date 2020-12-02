@@ -1,7 +1,10 @@
 import styles from "./pagination.module.scss";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { useGetResponseLimitation } from "../../../../helpers/customHooks/getResponseLimitation";
 import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
+
 import subTaskArrow from "../../../../helpers/icons/subTask-arrow";
 
 import setNextSubTaskThunk from "../../../../thunks/setNextSubTaskThunk";
@@ -17,6 +20,8 @@ function Pagination() {
 	);
 
 	const currentResultIndex = useGetResultIndex();
+	const responseLimitation = useGetResponseLimitation();
+
 	const subTaskLength = useSelector(
 		(state) => state.resultStorage.results[currentResultIndex]?.data.length
 	);
@@ -33,7 +38,7 @@ function Pagination() {
 	};
 
 	const setNextSubTask = () => {
-		dispatch(setNextSubTaskThunk());
+		dispatch(setNextSubTaskThunk(currentResultIndex, responseLimitation));
 	};
 
 	const setPreveusSubTask = () => {
