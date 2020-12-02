@@ -8,7 +8,7 @@ import { ILLUSTRATIONS_ANSWERS } from "../helpers/taskTypes";
 
 import setNextTaskId from "./setNextTaskId";
 
-const nextButtonHadler = (currentResultIndex) => {
+const nextButtonHadler = (currentResultIndex, responseLimitation) => {
 	return (dispatch, getState) => {
 		const state = getState();
 
@@ -31,7 +31,11 @@ const nextButtonHadler = (currentResultIndex) => {
 		dispatch(setIsNextBtnClicked(true));
 
 		if (taskType === ILLUSTRATIONS_ANSWERS) {
-			if (subTaskAnswersIA == null || subTaskAnswersIA === "") return;
+			if (
+				subTaskAnswersIA == null ||
+				subTaskAnswersIA.length < responseLimitation.from
+			)
+				return;
 		} else {
 			for (const answer of subTaskAnswersRB) {
 				if (answer.optionId == null) return;

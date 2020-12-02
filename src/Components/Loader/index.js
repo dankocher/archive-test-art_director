@@ -37,8 +37,8 @@ const getPage = (taskType) => {
 			return <SplitScreen mainContainer={<BigTextMainContainer />} />;
 		case ILLUSTRATIONS_ANSWERS:
 			return <SplitScreen mainContainer={<Carousel />} />;
-		// case ILLUSTRATION_RADIO_BUTTONS:
-		// 	return <SplitScreen rightSide={<Illustrations />} />;
+		case ILLUSTRATION_RADIO_BUTTONS:
+			return <SplitScreen mainContainer={<Carousel />} />;
 
 		default:
 			break;

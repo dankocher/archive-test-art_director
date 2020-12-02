@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
 	setImageLength,
 	setIsHiddenPhotoModal,
+	setImageIndex,
 } from "../../../../redux/actions/caruselActions";
-// import imgList from "../../../../utils/imgList";
 
 import { getImgPath } from "../../../../helpers/getImgPath";
 import startTaskThunk from "../../../../thunks/startTaskThunk";
@@ -34,20 +34,32 @@ function Carousel() {
 	const currentSubTaskIndex = useSelector(
 		(state) => state.testStorage.currentSubTaskIndex
 	);
+	const radioButtonTaskList = task.data.radioButtonTaskList;
 
 	const imageList = imgGrid[currentSubTaskIndex]?.imgColumnList;
+	console.log(imageList);
 
 	const currentImgUrl =
 		imageList == null || imageList.length === 0
 			? require("../../../../utils/img/noImgBig.png")
-			: getImgPath(imageList[currentImageIndex].name);
+			: getImgPath(imageList[currentImageIndex]?.name);
 
 	useEffect(() => {
-		dispatch(startTaskThunk(taskId, resultIndex, imgGrid));
+		if (radioButtonTaskList == null) {
+			dispatch(startTaskThunk(taskId, resultIndex, imgGrid));
+		} else {
+			dispatch(
+				startTaskThunk(taskId, resultIndex, imgGrid, radioButtonTaskList)
+			);
+		}
 		// setImageList(currentImageList);
+	}, []);
+
+	useEffect(() => {
 		if (imageList == null) return;
 		dispatch(setImageLength(imageList.length));
-	}, []);
+		dispatch(setImageIndex(0));
+	}, [imageList.length]);
 
 	const handleImgOnClick = () => {
 		dispatch(setIsHiddenPhotoModal());

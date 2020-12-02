@@ -22,8 +22,8 @@ function RadioButtonAnswers(props) {
 	);
 	const checkedValue = useSelector(
 		(state) =>
-			state.resultStorage.results[resultIndex]?.data[currentSubTaskIndex]
-				.answers[index].optionId
+			state.resultStorage?.results[resultIndex]?.data[currentSubTaskIndex]
+				?.answers[index]?.optionId
 	);
 
 	const isNextBtnClicked = useSelector(

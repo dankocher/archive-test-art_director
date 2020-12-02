@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import nextButtonHadler from "../../../thunks/nextButtonHadler";
+import { useGetResponseLimitation } from "../../../helpers/customHooks/getResponseLimitation";
 import { useGetResultIndex } from "../../../helpers/customHooks/getResultIndex";
 
 import { ILLUSTRATIONS_ANSWERS } from "../../../helpers/taskTypes";
@@ -18,10 +19,12 @@ function SideContainer() {
 	const title = task.name;
 	const description = task.description;
 	const radioButtonTaskList = task.data?.radioButtonTaskList;
+
+	const responseLimitation = useGetResponseLimitation();
 	const currentResultIndex = useGetResultIndex();
 
 	const nextButtonClickedHandle = () => {
-		dispatch(nextButtonHadler(currentResultIndex));
+		dispatch(nextButtonHadler(currentResultIndex, responseLimitation));
 	};
 
 	const getSideTaskView = () => {

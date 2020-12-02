@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useGetResultIndex } from "../../../../helpers/customHooks/getResultIndex";
+import { useGetResponseLimitation } from "../../../../helpers/customHooks/getResponseLimitation";
 
 import { setTextAreaAnswer } from "../../../../redux/actions/resultActions";
 
 import TextArea from "../../../TextArea/TextArea";
-
-const FROM = 1;
-const TO = 2000;
 
 function TextAreaSettings() {
 	const dispatch = useDispatch();
@@ -16,18 +14,8 @@ function TextAreaSettings() {
 	const resultIndex = useGetResultIndex();
 
 	const [localAnswer, setLocalAnswer] = useState("");
-	const [localResponseLimitation, setLocalResponseLimitation] = useState({
-		from: FROM,
-		to: TO,
-	});
 
-	const isAnswerSizeLimited = useSelector(
-		(state) => state.testStorage.currentTask.data.isAnswerSizeLimited
-	);
-
-	const responseLimitation = useSelector(
-		(state) => state.testStorage.currentTask.data.responseLimitation
-	);
+	const responseLimitation = useGetResponseLimitation();
 
 	const currentSubTaskIndex = useSelector(
 		(state) => state.testStorage.currentSubTaskIndex
@@ -51,14 +39,9 @@ function TextAreaSettings() {
 		if (!isNextBtnClicked) return true;
 
 		if (localAnswer == null) return false;
-		if (localAnswer.length < localResponseLimitation.from) return false;
+		if (localAnswer.length < responseLimitation.from) return false;
 		return true;
 	};
-
-	useEffect(() => {
-		if (!isAnswerSizeLimited) return;
-		setLocalResponseLimitation(responseLimitation);
-	}, []);
 
 	return (
 		<TextArea
@@ -66,7 +49,7 @@ function TextAreaSettings() {
 			text={localAnswer}
 			setText={setLocalAnswer}
 			onBlur={saveAnswer}
-			maxLength={localResponseLimitation.to}
+			maxLength={responseLimitation.to}
 			defaultHeight={"2.6rem"}
 			placeholder={"Текст..."}
 			error={!validationAnswer()}
