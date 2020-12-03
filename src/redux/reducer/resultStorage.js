@@ -18,6 +18,7 @@ function resultStorage(state = initialState, action) {
 				name: action.payload.name,
 				email: action.payload.email,
 				test_id: action.payload.currentTestId,
+				start_date: new Date().getTime(),
 			};
 		case START_TASK:
 			return getPreparedTask(state, action);

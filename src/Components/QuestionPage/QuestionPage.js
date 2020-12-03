@@ -89,7 +89,7 @@ function QuestionPage() {
 	return (
 		<>
 			<div className={styles.header}>
-				<Timer time={exportText.time} />
+				<Timer type={"test"} />
 				<TaskInformation />
 			</div>
 			<div className={styles.centredWrapper}>
