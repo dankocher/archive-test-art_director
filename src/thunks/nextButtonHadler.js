@@ -48,10 +48,8 @@ const nextButtonHadler = (currentResultIndex, responseLimitation) => {
 				dispatch(setMaxOpenedSubTaskIndex(maxOpenedSubTaskIndex + 1));
 				dispatch(setCurrentSubTaskIndex(currentSubTaskIndex + 1));
 			} else {
-				dispatch(setIsNextBtnClicked(false));
-
 				// go to next task
-				dispatch(setNextTaskId());
+				dispatch(setNextTaskId(currentResultIndex));
 				console.log("ia poshel na sledushee zadanie");
 			}
 		} else {

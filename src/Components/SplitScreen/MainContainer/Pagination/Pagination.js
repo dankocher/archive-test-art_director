@@ -56,7 +56,9 @@ function Pagination() {
 					<i>{subTaskArrow}</i>
 				</button>
 				<span className={styles.container__paginationInfo}>
-					{`Подзадание ${currentSubTaskIndex + 1} из ${subTaskLength}`}
+					{`Подзадание ${currentSubTaskIndex + 1 || ""} из ${
+						subTaskLength || ""
+					}`}
 				</span>
 				<button
 					className={"hidden-button"}

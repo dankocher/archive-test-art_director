@@ -12,6 +12,10 @@ function RadioButton(props) {
 				console.log("is not a function");
 		  };
 
+	const isChecked = () => {
+		return props.checkedValue === props.value;
+	};
+
 	return (
 		<div className={styles.container}>
 			<div>
@@ -20,7 +24,7 @@ function RadioButton(props) {
 					htmlFor={props.id}
 					className={styles.container__radioButton}
 				>
-					{props.checkedValue === props.value ? (
+					{isChecked() ? (
 						<label
 							style={{ backgroundColor: color }}
 							htmlFor={props.id}
@@ -37,6 +41,7 @@ function RadioButton(props) {
 				id={props.id}
 				name={props.name}
 				type="radio"
+				checked={isChecked()}
 				value={props.value}
 				onChange={(event) => onChange(event)}
 			/>

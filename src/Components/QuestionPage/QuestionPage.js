@@ -10,10 +10,7 @@ import QATask from "./QATask/QATask";
 import { startTask } from "../../redux/actions/resultActions";
 import { setIsNextBtnClicked } from "../../redux/actions/testActions";
 import setNextTaskId from "../../thunks/setNextTaskId";
-
-const exportText = {
-	time: "05:15",
-};
+import { useGetResultIndex } from "../../helpers/customHooks/getResultIndex";
 
 const FROM = 1;
 const TO = 2000;
@@ -29,15 +26,12 @@ function QuestionPage() {
 
 	const task = useSelector((state) => state.testStorage.currentTask);
 	const taskId = task._id;
+	const description = task.description;
 	const isAnswerSizeLimited = task.data.isAnswerSizeLimited;
 	const QAList = task.data.questionAnswerList;
 	const responseLimitation = task.data.responseLimitation;
 
-	const resultIndex = useSelector((state) => {
-		const results = state.resultStorage.results;
-		if (results == null || results.length === 0) return -1;
-		return results.findIndex((element) => element.task_id === taskId);
-	});
+	const resultIndex = useGetResultIndex();
 
 	const results = useSelector(
 		(state) => state.resultStorage.results[resultIndex]?.data
@@ -47,10 +41,6 @@ function QuestionPage() {
 		Array(QAList.length)
 			.fill()
 			.map((_, i) => itemsRef[i] || createRef());
-		// itemsRef.current = Array(QAList.length)
-		// 	.fill()
-		// 	.map((_, i) => itemsRef.current[i] || createRef());
-		// itemsRef.current = itemsRef.current.slice(0, QAList.length);
 	}, []);
 
 	useEffect(() => {
@@ -83,18 +73,18 @@ function QuestionPage() {
 		}
 
 		dispatch(setIsNextBtnClicked(false));
-		dispatch(setNextTaskId());
+		dispatch(setNextTaskId(resultIndex));
 	};
 
 	return (
 		<>
 			<div className={styles.header}>
-				<Timer time={exportText.time} />
+				<Timer type={"test"} />
 				<TaskInformation />
 			</div>
 			<div className={styles.centredWrapper}>
 				<div className={styles.centredWrapper__container}>
-					<h2>{exportText.headingText}</h2>
+					<h2>{description}</h2>
 					<div className={styles.centredWrapper__container__body}>
 						{QAList.map((element, key) => {
 							return (

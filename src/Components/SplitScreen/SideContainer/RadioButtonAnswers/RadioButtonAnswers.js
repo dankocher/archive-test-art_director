@@ -62,7 +62,7 @@ function RadioButtonAnswers(props) {
 					return (
 						<RadioButton
 							key={key}
-							id={`${element.option}-${key + element.id}`}
+							id={`${element.option}-${index}-${key + element.id}`}
 							name={`${radioButtonTask.question}-${index}`}
 							color={chooseColor()}
 							value={`${element.id}`}

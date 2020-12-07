@@ -52,7 +52,9 @@ function SideContainer() {
 					<h2>{title}</h2>
 					<p>{description}</p>
 				</article>
-				{getSideTaskView()}
+				<div className={styles.contentWrapper__body__answersField}>
+					{getSideTaskView()}
+				</div>
 			</div>
 			<Button
 				color="white"

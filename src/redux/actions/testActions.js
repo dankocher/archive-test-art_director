@@ -5,6 +5,7 @@ export const SET_CURRENT_TEST_ID = "SET_CURRENT_TEST_ID";
 export const SET_IS_NEXT_BUTTON_CLICKED = "SET_IS_NEXT_BUTTON_CLICKED";
 export const SET_CURRENT_SUBTASK_INDEX = "SET_CURRENT_SUBTASK_INDEX";
 export const SET_MAX_OPENED_SUBTASK_INDEX = "SET_MAX_OPENED_SUBTASK_INDEX";
+export const SET_LAST_TASK_NUMBER = "SET_LAST_TASK_NUMBER";
 
 export const setTaskList = (TaskList) => ({
 	type: SET_TASK_LIST,
@@ -39,4 +40,9 @@ export const setCurrentSubTaskIndex = (index) => ({
 export const setMaxOpenedSubTaskIndex = (index) => ({
 	type: SET_MAX_OPENED_SUBTASK_INDEX,
 	payload: index,
+});
+
+export const setLastTaskNumber = (number) => ({
+	type: SET_LAST_TASK_NUMBER,
+	payload: number,
 });
