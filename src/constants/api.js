@@ -11,6 +11,7 @@ const host = {
 const api = {
 	td_get_tasks: { method: "GET", uri: "/api/td/get/list/:tt_id" },
 	td_get_task: { method: "GET", uri: "/api/td/get/:tt_id/:_id" },
+	td_add_results: { method: "POST", uri: "/api/td/results/add" },
 };
 
 export { host, api };

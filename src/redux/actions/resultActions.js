@@ -2,6 +2,9 @@ export const LOGIN = "LOGIN";
 export const START_TASK = "START_TASK";
 export const SET_TEXT_AREA_DATA = "SET_TEXT_AREA_DATA";
 export const SET_WORD_ANSWER = "SET_WORD_ANSWER";
+export const SET_TASK_END_DATE = "SET_TASK_END_DATE";
+export const ADD_WELCOME_PAGE = "ADD_WELCOME_PAGE";
+export const SET_TEST_END_DATE = "SET_TEST_END_DATE";
 
 export const login = (name, email, currentTestId) => ({
 	type: LOGIN,
@@ -16,6 +19,11 @@ export const startTask = (
 ) => ({
 	type: START_TASK,
 	payload: { taskId, startData, taskList, radioButtonTaskList },
+});
+
+export const addWelcomePage = (taskId, startDate) => ({
+	type: ADD_WELCOME_PAGE,
+	payload: { taskId, startDate },
 });
 
 export const setTextAreaAnswer = (answer, resultIndex, index) => ({
@@ -36,4 +44,14 @@ export const setAnswerOfWordsRadioButtons = (
 	resultIndex,
 	dataIndex,
 	answersIndex,
+});
+
+export const setTaskEndDate = (date, resultIndex) => ({
+	type: SET_TASK_END_DATE,
+	payload: date,
+	resultIndex,
+});
+
+export const setTestEndDate = () => ({
+	type: SET_TEST_END_DATE,
 });

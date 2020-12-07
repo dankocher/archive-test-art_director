@@ -1,20 +1,24 @@
+import styles from "./taskInformation.module.scss";
 import React from "react";
-import "./TaskInformation.css";
 
 import Timer from "../Timer/Timer";
+import { useSelector } from "react-redux";
 
-const exportText = {
-	PaginatorProgress: "Задание  3 из 12",
-	time: "01:15",
-};
+function TaskInformation() {
+	const lastTaskNumber = useSelector(
+		(state) => state.testStorage.lastTaskNumber
+	);
 
-function SideContainerHeader() {
+	const currentTaskNumber = useSelector(
+		(state) => state.testStorage.currentTask.task_number
+	);
+
 	return (
-		<div className="header--SideContainerHeader">
-			<span>{exportText.PaginatorProgress}</span>
-			<Timer time={exportText.time} />
+		<div className={styles.container}>
+			<span>{`Задание  ${currentTaskNumber} из ${lastTaskNumber}`}</span>
+			<Timer />
 		</div>
 	);
 }
 
-export default SideContainerHeader;
+export default TaskInformation;

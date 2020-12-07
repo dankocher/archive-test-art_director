@@ -1,9 +1,11 @@
 import styles from "./WelcomeScreen.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getImgPath } from "../../helpers/getImgPath";
+import { useGetResultIndex } from "../../helpers/customHooks/getResultIndex";
 import setNextTaskId from "../../thunks/setNextTaskId";
+import { addWelcomePage } from "../../redux/actions/resultActions";
 
 import staticText from "../../utils/labelText/lable.json";
 
@@ -14,14 +16,23 @@ const classNames = require("classnames");
 function WelcomeScreen() {
 	const dispatch = useDispatch();
 
-	const img = useSelector(
-		(state) => state.testStorage.currentTask?.data.imgUrl
-	);
+	const resultIndex = useGetResultIndex();
+
+	const task = useSelector((state) => state.testStorage.currentTask);
+	const taskId = task._id;
+	const isTimeConsidered = task.isTimeConsidered;
+
+	const header = task?.name;
+	const description = task?.description;
+	const img = task?.data.imgUrl;
 	const imgUrl = getImgPath(img);
-	const header = useSelector((state) => state.testStorage.currentTask?.name);
-	const description = useSelector(
-		(state) => state.testStorage.currentTask?.description
-	);
+
+	useEffect(() => {
+		if (resultIndex !== -1) return;
+
+		const startDate = isTimeConsidered ? new Date().getTime() : undefined;
+		dispatch(addWelcomePage(taskId, startDate));
+	}, []);
 
 	const contentContainer = classNames(styles.contentContainer, {
 		[styles.containerOneContent]: img == null || img === "",
@@ -32,7 +43,7 @@ function WelcomeScreen() {
 	});
 
 	const nextTaskHandler = () => {
-		dispatch(setNextTaskId());
+		dispatch(setNextTaskId(resultIndex));
 	};
 
 	return (

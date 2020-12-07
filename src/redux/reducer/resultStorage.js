@@ -6,6 +6,9 @@ import {
 	START_TASK,
 	SET_TEXT_AREA_DATA,
 	SET_WORD_ANSWER,
+	SET_TASK_END_DATE,
+	ADD_WELCOME_PAGE,
+	SET_TEST_END_DATE,
 } from "../actions/resultActions";
 
 import { initialState } from "../initialStates";
@@ -54,6 +57,29 @@ function resultStorage(state = initialState, action) {
 					},
 				},
 			});
+		case SET_TASK_END_DATE:
+			return update(state, {
+				results: {
+					[action.resultIndex]: {
+						end_date: {
+							$set: action.payload,
+						},
+					},
+				},
+			});
+		case ADD_WELCOME_PAGE:
+			return update(state, {
+				results: {
+					$push: [
+						{
+							task_id: action.payload.taskId,
+							start_date: action.payload.startDate,
+						},
+					],
+				},
+			});
+		case SET_TEST_END_DATE:
+			return { ...state, end_date: new Date().getTime() };
 		default:
 			return state;
 	}

@@ -1,5 +1,7 @@
 export const result = {
 	task_id: undefined,
+	start_date: undefined,
+	end_date: undefined,
 	data: [],
 };
 

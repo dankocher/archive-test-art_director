@@ -36,8 +36,9 @@ function Carousel() {
 	);
 	const radioButtonTaskList = task.data.radioButtonTaskList;
 
+	const currentTask = useSelector((state) => state.testStorage.currentTask);
+
 	const imageList = imgGrid[currentSubTaskIndex]?.imgColumnList;
-	console.log(imageList);
 
 	const currentImgUrl =
 		imageList == null || imageList.length === 0
@@ -53,13 +54,13 @@ function Carousel() {
 			);
 		}
 		// setImageList(currentImageList);
-	}, []);
+	}, [currentTask]);
 
 	useEffect(() => {
 		if (imageList == null) return;
 		dispatch(setImageLength(imageList.length));
 		dispatch(setImageIndex(0));
-	}, [imageList.length]);
+	}, [imageList?.length]);
 
 	const handleImgOnClick = () => {
 		dispatch(setIsHiddenPhotoModal());

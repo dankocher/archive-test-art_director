@@ -6,6 +6,7 @@ import {
 	SET_IS_NEXT_BUTTON_CLICKED,
 	SET_CURRENT_SUBTASK_INDEX,
 	SET_MAX_OPENED_SUBTASK_INDEX,
+	SET_LAST_TASK_NUMBER,
 } from "../actions/testActions";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
 	isNextBtnClicked: false,
 	currentSubTaskIndex: undefined,
 	maxOpenedSubTaskIndex: undefined,
+	lastTaskNumber: undefined,
 };
 
 function testStorage(state = initialState, action) {
@@ -34,6 +36,8 @@ function testStorage(state = initialState, action) {
 			return { ...state, currentSubTaskIndex: action.payload };
 		case SET_MAX_OPENED_SUBTASK_INDEX:
 			return { ...state, maxOpenedSubTaskIndex: action.payload };
+		case SET_LAST_TASK_NUMBER:
+			return { ...state, lastTaskNumber: action.payload };
 		default:
 			return state;
 	}
