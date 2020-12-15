@@ -28,10 +28,10 @@ function PhotoModal({ currentImgUrl, isOneImg }) {
 	return (
 		<TransformWrapper
 			wheel={{ disabled: true }}
-			doubleClick={{ disabled: true }}
-			defaultScale={1}
-			zoomIn={{ step: 6 }}
-			zoomOut={{ step: 7.5 }}
+			// doubleClick={{ disabled: true }}
+			// defaultScale={1}
+			// zoomIn={{ step: 6, disabled: false }}
+			// zoomOut={{ step: 7.5 }}
 		>
 			{({
 				setScale,

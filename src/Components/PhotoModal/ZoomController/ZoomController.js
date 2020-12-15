@@ -35,33 +35,35 @@ function ZoomController({
 		activeColor: !getIsMaxZoomed(),
 	});
 
-	const handlerZoomOutButton = (event) => {
+	const handlerZoomOutButton = async (event) => {
 		event.stopPropagation();
 		if (!getIsZoomed()) {
 			return;
 		}
 
-		dispatch(setScaleCounter(scaleCounter - 1));
+		await dispatch(setScaleCounter(scaleCounter - 1));
 		zoomOut(event);
 	};
 
-	const handlerResetZoomButton = (event) => {
+	const handlerResetZoomButton = async (event) => {
 		event.stopPropagation();
 		if (!getIsZoomed()) {
 			return;
 		}
 
-		dispatch(setScaleCounter(0));
+		await dispatch(setScaleCounter(0));
 		resetTransform();
 	};
 
-	const handlerZoomInButton = (event) => {
+	const handlerZoomInButton = async (event) => {
+		// console.log(event);
 		event.stopPropagation();
 		if (getIsMaxZoomed()) {
 			return;
 		}
 
-		dispatch(setScaleCounter(scaleCounter + 1));
+		// debugger;
+		await dispatch(setScaleCounter(scaleCounter + 1));
 		zoomIn(event);
 	};
 
